@@ -1,0 +1,16 @@
+{
+  "redirects": [
+    { "source": "/fomo-newbie-guide_May.html", "destination": "/", "permanent": true },
+    { "source": "/fomo-newbie-guide_May-en.html", "destination": "/en", "permanent": true },
+    { "source": "/fomo-newbie-guide_May-ko.html", "destination": "/ko", "permanent": true },
+    { "source": "/fomo-newbie-guide_May-ja.html", "destination": "/ja", "permanent": true },
+    { "source": "/fomo-season-1.html", "destination": "/season-1", "permanent": true },
+    { "source": "/fomo-season-1-en.html", "destination": "/season-1/en", "permanent": true },
+    { "source": "/fomo-season-1-ko.html", "destination": "/season-1/ko", "permanent": true },
+    { "source": "/fomo-season-1-ja.html", "destination": "/season-1/ja", "permanent": true },
+    { "source": "/fomo-season-2.html", "destination": "/season-2", "permanent": true },
+    { "source": "/fomo-season-2-en.html", "destination": "/season-2/en", "permanent": true },
+    { "source": "/fomo-season-2-ko.html", "destination": "/season-2/ko", "permanent": true },
+    { "source": "/fomo-season-2-ja.html", "destination": "/season-2/ja", "permanent": true }
+  ]
+}
