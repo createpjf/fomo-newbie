@@ -11,6 +11,10 @@ LANG_META = {
 }
 LANG_ORDER = ("en", "zh", "ko", "ja")
 
+VERCEL_ANALYTICS_SNIPPET = (
+    '\n<script defer src="/_vercel/insights/script.js"></script>\n'
+)
+
 LANG_SWITCH_CSS = """
   .lang-dd{margin-right:6px;position:relative;}
   .lang-dd[data-open="true"]{z-index:120;}
@@ -410,6 +414,14 @@ def _patch_header_css(html: str) -> str:
     return html
 
 
+def patch_analytics(html: str) -> str:
+    if "insights/script.js" in html:
+        return html
+    if "</body>" in html:
+        return html.replace("</body>", VERCEL_ANALYTICS_SNIPPET + "</body>", 1)
+    return html
+
+
 def patch_header_html(html: str, spec: dict, active_lang: str = "zh") -> str:
     page = spec["page"]
     html = _patch_header_css(html)
@@ -504,4 +516,5 @@ def patch_header_html(html: str, spec: dict, active_lang: str = "zh") -> str:
         html = html.replace('href="guide.html"', f'href="{guide_href}"')
         html = html.replace('href="/guide.html"', f'href="{guide_href}"')
 
+    html = patch_analytics(html)
     return html

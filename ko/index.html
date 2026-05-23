@@ -35,7 +35,7 @@
 <meta name="twitter:image" content="og-fomo-guide.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
 /* ===== Alibaba PuHuiTi 3.0 — subsetted to this document's CJK glyphs (F-P0-4) ===== */
@@ -75,7 +75,7 @@
     --txt-2:rgba(255,255,255,0.66); --txt-3:rgba(255,255,255,0.42);
     --f-dur-journey:3400ms;
     /* Typography — Iron Rule §6 + CJK stack */
-    --font:'Inter','Noto Sans KR','SF Pro Display','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+    --font:'Inter','SF Pro Display','Alibaba PuHuiTi 3.0','PingFang SC','Microsoft YaHei',sans-serif;
     --mono:'JetBrains Mono','SF Mono','Consolas',monospace;
     /* Tracking — Iron Rule §4 */
     --track-h12:-0.02em; --track-h3b:-0.01em; --track-cjk:-0.01em;
@@ -104,11 +104,6 @@
                transform var(--f-dur-major) var(--f-ease-out);
   }
   [data-anim].in{opacity:1;transform:none;}
-  /* i18n: show content even if entrance JS fails */
-  html[lang="en"] [data-anim],
-  html[lang="ko"] [data-anim],
-  html[lang="ja"] [data-anim]{opacity:1;transform:none;}
-
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto;}
     [data-anim]{opacity:1!important;transform:none!important;transition:none!important;}
@@ -1894,6 +1889,8 @@ if(window.lucide) lucide.createIcons();
     if(window.lucide) lucide.createIcons();
   })();
 </script>
+
+<script defer src="/_vercel/insights/script.js"></script>
 
 </body>
 </html>

@@ -104,11 +104,6 @@
                transform var(--f-dur-major) var(--f-ease-out);
   }
   [data-anim].in{opacity:1;transform:none;}
-  /* i18n: show content even if entrance JS fails */
-  html[lang="en"] [data-anim],
-  html[lang="ko"] [data-anim],
-  html[lang="ja"] [data-anim]{opacity:1;transform:none;}
-
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto;}
     [data-anim]{opacity:1!important;transform:none!important;transition:none!important;}
@@ -1894,6 +1889,8 @@ if(window.lucide) lucide.createIcons();
     if(window.lucide) lucide.createIcons();
   })();
 </script>
+
+<script defer src="/_vercel/insights/script.js"></script>
 
 </body>
 </html>
