@@ -40,6 +40,8 @@ VERCEL_LANG_EVENT_JS = """<script>
 </script>
 """
 
+FAVICON_LINK = '<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n'
+
 VERCEL_ANALYTICS_SNIPPET = (
     "\n" + VERCEL_VA_QUEUE + VERCEL_INSIGHTS_SCRIPT + "\n" + VERCEL_LANG_EVENT_JS + "\n"
 )
@@ -445,6 +447,21 @@ def _patch_header_css(html: str) -> str:
     return html
 
 
+def patch_favicon(html: str) -> str:
+    if 'rel="icon"' in html and "favicon" in html:
+        return html
+    insert_after = '<meta name="format-detection" content="telephone=no">'
+    if insert_after in html:
+        return html.replace(
+            insert_after,
+            insert_after + "\n" + FAVICON_LINK,
+            1,
+        )
+    if "<head>" in html:
+        return html.replace("<head>", "<head>\n" + FAVICON_LINK, 1)
+    return html
+
+
 def patch_analytics(html: str) -> str:
     if LANG_EVENT_MARKER in html:
         return html
@@ -557,5 +574,6 @@ def patch_header_html(html: str, spec: dict, active_lang: str = "zh") -> str:
         html = html.replace('href="guide.html"', f'href="{guide_href}"')
         html = html.replace('href="/guide.html"', f'href="{guide_href}"')
 
+    html = patch_favicon(html)
     html = patch_analytics(html)
     return html
