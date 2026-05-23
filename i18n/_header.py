@@ -11,9 +11,40 @@ LANG_META = {
 }
 LANG_ORDER = ("en", "zh", "ko", "ja")
 
+VERCEL_VA_QUEUE = """<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+"""
+
+VERCEL_INSIGHTS_SCRIPT = '<script defer src="/_vercel/insights/script.js"></script>'
+
+VERCEL_LANG_EVENT_JS = """<script>
+(function(){
+  function detectLang(){
+    var parts = location.pathname.replace(/\\/$/,'').split('/').filter(Boolean);
+    var langs = {en:1,ko:1,ja:1};
+    for (var i = parts.length - 1; i >= 0; i--) {
+      if (langs[parts[i]]) return parts[i];
+    }
+    return 'zh';
+  }
+  function trackLang(){
+    va('event', {
+      name: 'Page view by language',
+      data: { lang: detectLang(), page: location.pathname || '/' }
+    });
+  }
+  if (document.readyState === 'complete') trackLang();
+  else window.addEventListener('load', trackLang);
+})();
+</script>
+"""
+
 VERCEL_ANALYTICS_SNIPPET = (
-    '\n<script defer src="/_vercel/insights/script.js"></script>\n'
+    "\n" + VERCEL_VA_QUEUE + VERCEL_INSIGHTS_SCRIPT + "\n" + VERCEL_LANG_EVENT_JS + "\n"
 )
+
+LANG_EVENT_MARKER = "Page view by language"
 
 LANG_SWITCH_CSS = """
   .lang-dd{margin-right:6px;position:relative;}
@@ -415,10 +446,20 @@ def _patch_header_css(html: str) -> str:
 
 
 def patch_analytics(html: str) -> str:
-    if "insights/script.js" in html:
+    if LANG_EVENT_MARKER in html:
         return html
-    if "</body>" in html:
-        return html.replace("</body>", VERCEL_ANALYTICS_SNIPPET + "</body>", 1)
+    if "insights/script.js" not in html:
+        if "</body>" in html:
+            return html.replace("</body>", VERCEL_ANALYTICS_SNIPPET + "</body>", 1)
+        return html
+    if "window.va = window.va" not in html:
+        html = html.replace(
+            '<script defer src="/_vercel/insights/script.js"></script>',
+            VERCEL_VA_QUEUE + VERCEL_INSIGHTS_SCRIPT,
+            1,
+        )
+    if LANG_EVENT_MARKER not in html and "</body>" in html:
+        html = html.replace("</body>", "\n" + VERCEL_LANG_EVENT_JS + "\n</body>", 1)
     return html
 
 
