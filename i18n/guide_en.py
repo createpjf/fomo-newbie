@@ -163,7 +163,6 @@ REPLACEMENTS = [
   ('选择一个模型并投入 $FLOCK', 'Pick a model and commit $FLOCK'),
   ('收入机制 · 点击节点或悬停定格', 'Revenue mechanics · click or hover a node to pause'),
   ('10% · 示意单价 1.26', '10% · illustrative unit price 1.26'),
-  ('动画跑完 99 分钟约 3 秒', 'Animation runs ~3s for 99 minutes'),
   ('募资进度示意 · 相对最低目标', 'Raise progress (illustrative) · vs minimum target'),
   ('MT 正式铸出，模型完成代币化', 'MT is minted; model tokenization completes'),
   ('阅读官方 Quickstart', 'Read official Quickstart'),
