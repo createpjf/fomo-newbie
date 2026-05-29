@@ -174,7 +174,7 @@ def main():
     ]
 
     def publish_s2(lang: str, extra: list):
-        src_name = "season-2.html" if lang == "zh" else f"fomo-season-2-{lang}.html"
+        src_name = "season-2.html" if lang == "zh" else f"season-2-{lang}.html"
         if not os.path.exists(src_name):
             print(f"skip s2 {lang}: missing {src_name}")
             return

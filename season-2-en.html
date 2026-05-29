@@ -1,35 +1,34 @@
-<!-- fomo-season-2.html — FOMO Reward Season 2 -->
+<!-- fomo-season-2-en.html -->
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="format-detection" content="telephone=no">
-<link rel="alternate" hreflang="zh-Hans" href="/season-2">
-<link rel="alternate" hreflang="en" href="/season-2/en">
-<link rel="alternate" hreflang="ko" href="/season-2/ko">
-<link rel="alternate" hreflang="ja" href="/season-2/ja">
-<link rel="alternate" hreflang="x-default" href="/season-2/en">
-
-<title>FOMO Reward Season 2 · 用 mapped model 调 API，赢质押加成与排放奖励</title>
-<meta name="description" content="FOMO Reward Season 2：用映射后的 apiPlatformId 调 API 才计入奖励。质押加成与排放奖励，S1 已于 5/22 结束，S2 于 5/25 开始。">
+<title>FOMO Reward Season 2 · Call AI with the mapped model ID, earn rewards</title>
+<meta name="description" content="FOMO Reward Season 2: only API calls using the mapped apiPlatformId count toward rewards — staking boost + $FLOCK emission. S1 ended 5/22; S2 starts 5/25.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="FLock">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:title" content="FOMO Reward Season 2 · 用 mapped model 调 API，赢质押加成与排放奖励">
-<meta property="og:description" content="必须用映射后的 apiPlatformId 调 API 才有质押加成与排放奖励。S1 5/22 结束，S2 5/25 开始。">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="FOMO Reward Season 2 · Call AI with the mapped model ID, earn rewards">
+<meta property="og:description" content="Only API calls using the mapped apiPlatformId earn staking boost and $FLOCK emission. S1 ended 5/22, S2 starts 5/25.">
 <meta property="og:image" content="og-fomo-guide.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="FOMO Reward Season 2 — 用 mapped model 调 API">
+<meta property="og:image:alt" content="FOMO Reward Season 2 — call AI with the mapped model ID">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="FOMO Reward Season 2 · 用 mapped model 调 API，赢质押加成与排放奖励">
-<meta name="twitter:description" content="用 mapped apiPlatformId 调 API · 质押加成 + 排放奖励 · 5/25 开始。">
+<meta name="twitter:title" content="FOMO Reward Season 2 · Call AI with the mapped model ID, earn rewards">
+<meta name="twitter:description" content="Call API with the mapped apiPlatformId · staking boost + emission · starts 5/25.">
 <meta name="twitter:image" content="og-fomo-guide.jpg">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="alternate" hreflang="zh-Hans" href="fomo-season-2.html">
+<link rel="alternate" hreflang="en" href="fomo-season-2-en.html">
+<link rel="alternate" hreflang="ko" href="fomo-season-2-ko.html">
+<link rel="alternate" hreflang="ja" href="fomo-season-2-ja.html">
+<link rel="alternate" hreflang="x-default" href="fomo-season-2.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -124,8 +123,6 @@
   .hbar svg.logo{height:24px;width:auto;display:block;flex-shrink:0;}
   .htag{font-family:var(--mono);font-size:11px;color:var(--blue);letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap;}
   .hbar-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
-  .hbar-left .hbar-dd#seasonDD,.hbar-actions .lang-dd{flex-shrink:0;}
-  @media (max-width:1100px){.htag{display:none;}}
   .hbar-btn{
     display:inline-flex;align-items:center;gap:6px;
     font-size:13px;font-weight:500;color:#fff;text-decoration:none;
@@ -152,9 +149,9 @@
     transition:opacity 0.16s ease, transform 0.16s ease;
     z-index:60;
   }
-  .hbar-dd[data-open="true"] .hbar-dd-menu{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);}
+  .hbar-dd[data-open="true"] .hbar-dd-menu,
+  .hbar-dd:focus-within .hbar-dd-menu{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);}
   @media (hover:hover) and (pointer:fine){
-    .hbar-dd:focus-within .hbar-dd-menu{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);}
     .hbar-dd:hover .hbar-dd-menu{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);}
     .hbar-dd:hover .hbar-dd-btn{border-color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.06);}
     .hbar-dd:hover .hbar-dd-btn .chev{transform:rotate(180deg);}
@@ -203,44 +200,16 @@
     .htag{display:none;}
     .hbar svg.logo{grid-column:1;grid-row:1;height:22px;max-width:100%;}
     .hbar-dd{grid-column:2;grid-row:1;justify-self:end;}
-    header,.hbar,.hbar-actions{overflow:visible;}
-    .hbar-left .hbar-dd#seasonDD{grid-column:2;grid-row:1;justify-self:end;}
-    .hbar-actions{grid-template-columns:auto 1fr 1fr;position:relative;z-index:1;}
-    .lang-dd{justify-self:start;margin-right:0;position:relative;z-index:5;}
-    .lang-dd[data-open="true"]{z-index:120;}
-    .hbar-left .hbar-dd#seasonDD .hbar-dd-menu{
-      right:0;left:auto;min-width:min(280px,calc(100vw - 32px));z-index:60;
-    }
-    .lang-dd .hbar-dd-menu{
-      left:0;right:auto;min-width:148px;max-width:min(220px,calc(100vw - 24px));z-index:80;
-    }
-
-
     .hbar-actions{
       grid-column:1/-1;grid-row:2;
-      display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;
+      display:grid;grid-template-columns:1fr 1fr;gap:8px;
       width:100%;margin:0;
     }
     .hbar-actions .hbar-btn{
       justify-content:center;min-height:44px;
       font-size:12px;padding:10px 8px;
     }
-  }
-
-
-  @media (min-width:390px) and (max-width:720px){
-    .wrap{padding-left:max(18px,env(safe-area-inset-left));padding-right:max(18px,env(safe-area-inset-right));}
-    .hero{padding:60px 0 52px;}
-    h1{font-size:clamp(30px,7.2vw,40px);line-height:1.12;margin-bottom:18px;}
-    .lede{font-size:17px;line-height:1.65;}
-    h2{font-size:clamp(24px,5.8vw,30px);}
-    .hbar-actions{gap:10px;}
-    .hbar-actions .hbar-btn{font-size:12.5px;padding:10px 10px;}
-  }
-  @media (min-width:600px) and (max-width:720px){
-    .hbar{column-gap:16px;row-gap:12px;}
-    .hbar-actions{gap:12px;}
-    .hbar svg.logo{max-width:min(160px,36vw);}
+    .hbar-dd-menu{right:0;left:auto;min-width:min(280px,calc(100vw - 32px));}
   }
 
   /* ---------- hero ---------- */
@@ -894,7 +863,7 @@
 <header>
   <div class="hbar">
     <div class="hbar-left">
-    <a href="/" class="logo-link" aria-label="返回 FOMO 新手手册">
+    <a href="fomo-newbie-guide_May.html" class="logo-link" aria-label="Back to the FOMO guide">
     <svg class="logo" viewBox="0 0 544 121" xmlns="http://www.w3.org/2000/svg" aria-label="FLock">
       <path d="M50.952 0.0469427H17.778H0.00012207V17.8477V40.987L17.778 58.7453V40.987V17.8477H50.952H68.7298L50.952 0.0469427Z" fill="white"/>
       <path d="M50.952 61.9942H17.778H0.00012207V79.7949V102.934L17.778 120.693V102.934V79.7949H50.952H68.7298L50.952 61.9942Z" fill="white"/>
@@ -908,42 +877,42 @@
       <path d="M79.2562 0H96.3725L96.3725 93.2475H144.471V108.98H79.2562V0Z" fill="white"/>
     </svg>
     </a>
-    <span class="htag">FOMO · Season 2</span>
+    <span class="htag">FOMO · Season 2</span>
     <div class="hbar-dd" id="seasonDD" data-open="false">
       <button type="button" class="hbar-btn hbar-dd-btn" id="seasonBtn"
               aria-haspopup="menu" aria-expanded="false" aria-controls="seasonMenu">
         Season<i class="chev" data-lucide="chevron-down"></i>
       </button>
       <div class="hbar-dd-menu" id="seasonMenu" role="menu" aria-labelledby="seasonBtn">
-        <a class="hbar-dd-item" href="/season-1" role="menuitem">
+        <a class="hbar-dd-item" href="fomo-season-1.html" role="menuitem">
           <span class="hbar-dd-tag">S1</span>
           <span class="hbar-dd-body">
-            <span class="hbar-dd-title">Season 1 <span class="pill ended">已结束</span></span>
-            <span class="hbar-dd-sub">真实使用 → 奖励飞轮 · 5/22 结束</span>
+            <span class="hbar-dd-title">Season 1 <span class="pill ended">ENDED</span></span>
+            <span class="hbar-dd-sub">Real usage → reward flywheel · ended 5/22</span>
           </span>
         </a>
         <a class="hbar-dd-item hbar-dd-item-current" href="#" role="menuitem" aria-current="page">
           <span class="hbar-dd-tag">S2</span>
           <span class="hbar-dd-body">
-            <span class="hbar-dd-title">Season 2 <span class="pill">LIVE</span></span>
-            <span class="hbar-dd-sub">mapped model 用量 · 5/25 开始</span>
+            <span class="hbar-dd-title">Season 2 <span class="pill">LIVE</span></span>
+            <span class="hbar-dd-sub">mapped model usage · starts 5/25</span>
           </span>
         </a>
       </div>
     </div>
     </div>
-    <nav class="hbar-actions" aria-label="前往产品平台">
-      <div class="lang-dd hbar-dd" id="langDD" data-open="false"><button type="button" class="hbar-btn hbar-dd-btn lang-dd-btn" id="langBtn" aria-label="Language" aria-haspopup="menu" aria-expanded="false" aria-controls="langMenu"><span class="lang-dd-lbl">中</span><i class="chev" data-lucide="chevron-down"></i></button><div class="hbar-dd-menu lang-dd-menu" id="langMenu" role="menu" aria-labelledby="langBtn"><a class="hbar-dd-item lang-dd-item" href="/season-2/en" role="menuitem"><span class="lang-dd-name">English</span><span class="lang-dd-code">EN</span></a><a class="hbar-dd-item lang-dd-item is-active" href="/season-2" role="menuitem" aria-current="page"><span class="lang-dd-name">中文</span><span class="lang-dd-code">中</span></a><a class="hbar-dd-item lang-dd-item" href="/season-2/ko" role="menuitem"><span class="lang-dd-name">한국어</span><span class="lang-dd-code">한</span></a><a class="hbar-dd-item lang-dd-item" href="/season-2/ja" role="menuitem"><span class="lang-dd-name">日本語</span><span class="lang-dd-code">日</span></a></div></div>
+    <nav class="hbar-actions" aria-label="Go to product platforms">
+      <div class="lang-switch" aria-label="Language"><a class="ls" href="fomo-season-2.html">中</a><a class="ls on" href="fomo-season-2-en.html" aria-current="page">EN</a><a class="ls" href="fomo-season-2-ko.html">한</a><a class="ls" href="fomo-season-2-ja.html">日</a></div>
       <a class="hbar-btn" href="https://platform.flock.io" target="_blank" rel="noopener"><span class="lbl-full">API Platform</span><span class="lbl-short">API</span><i data-lucide="arrow-up-right"></i></a>
-      <a class="hbar-btn hbar-btn-primary" href="https://fomo.flock.io" target="_blank" rel="noopener"><span class="lbl-full">FOMO 平台</span><span class="lbl-short">FOMO</span><i data-lucide="arrow-up-right"></i></a>
+      <a class="hbar-btn hbar-btn-primary" href="https://fomo.flock.io" target="_blank" rel="noopener"><span class="lbl-full">FOMO App</span><span class="lbl-short">FOMO</span><i data-lucide="arrow-up-right"></i></a>
     </nav>
   </div>
 </header>
 
 <div class="page-top">
   <div class="wrap">
-    <a class="back-link" href="/">
-      <i data-lucide="arrow-left"></i> 返回新手手册
+    <a class="back-link" href="fomo-newbie-guide_May.html">
+      <i data-lucide="arrow-left"></i> Back to guide
     </a>
   </div>
 </div>
@@ -953,16 +922,16 @@
 <!-- ============ S2 · OVERVIEW ============ -->
 <section id="season2">
   <div class="wrap">
-    <div class="sec-num" data-anim>SEASON 2 · 真实使用赚奖励</div>
-    <h2 data-anim>FOMO Reward Season 2 · <span class="accent">用「指定模型名」<span class="nb">调用 AI</span>，就能赚奖励</span></h2>
+    <div class="sec-num" data-anim>SEASON 2 · REAL USAGE</div>
+    <h2 data-anim>FOMO Reward Season 2 · <span class="accent">Call AI with the mapped model ID — earn rewards</span></h2>
     <p class="sec-intro" data-anim>
-      Season 1 已于 <b style="color:#fff;font-weight:500">5/22</b> 收官。Season 2 <b style="color:#fff;font-weight:500">周一（5/25）</b>正式开始，但<b style="color:#fff;font-weight:500">用量从今天（5/22）就开始计入</b>。规则只有一条：<span class="nb">调用 AI</span> 时，模型名要填下表右列的<b style="color:#fff;font-weight:500">「指定模型名」（apiPlatformId，例 gemini-3.5-flash-flocklife）</b>，用量才计入奖励；用别的名字这季不算。
+      Season 1 wrapped up on <b style="color:#fff;font-weight:500">5/22</b>. Season 2 officially begins <b style="color:#fff;font-weight:500">Monday (5/25)</b>, but <b style="color:#fff;font-weight:500">usage already counts from today (5/22)</b>. Just one rule: when you call AI, the model name must be the <b style="color:#fff;font-weight:500">mapped model ID (apiPlatformId, e.g. gemini-3.5-flash-flocklife)</b> from the right column below — only then does usage count toward rewards. Any other name won&#39;t count this season.
     </p>
     <div class="meta-row" data-anim>
-      <div class="chip"><b>S1 结束</b> · 5/22</div>
-      <div class="chip"><b>用量起算</b> · 今天 5/22</div>
-      <div class="chip"><b>S2 正式开始</b> · 周一 5/25</div>
-      <div class="chip">奖励 · <b>质押加成 + 每日发币</b></div>
+      <div class="chip"><b>S1 ended</b> · 5/22</div>
+      <div class="chip"><b>Usage starts</b> · today 5/22</div>
+      <div class="chip"><b>S2 officially starts</b> · Mon 5/25</div>
+      <div class="chip">Rewards · <b>staking boost + daily emission</b></div>
     </div>
   </div>
 </section>
@@ -970,27 +939,27 @@
 <!-- ============ 01 · CORE RULE ============ -->
 <section id="rule">
   <div class="wrap">
-    <div class="sec-num" data-anim>01 — 核心规则</div>
-    <h2 data-anim>只认 <span class="accent">「指定模型名」</span></h2>
+    <div class="sec-num" data-anim>01 — THE RULE</div>
+    <h2 data-anim>Only the <span class="accent">mapped model ID</span> counts</h2>
     <div class="callout info" data-anim style="margin-bottom:24px;">
       <span class="ci"><i data-lucide="badge-check"></i></span>
-      <p><b>用量从今天（5/22）起就计入 Season 2</b>，无需等到周一——S2 于 <b>5/25</b> 正式开始。关键是：只有用下表里的<b>「指定模型名」(apiPlatformId)</b>调用才算数，能拿到对应<b>模型代币(MT)</b>的两类奖励：<b>质押加成 + 每日发币</b>。用模型原本的名字或别的名字调用，这一季都<b>不算</b>。</p>
+      <p><b>Usage counts toward Season 2 starting today (5/22)</b> — no need to wait for Monday; S2 officially begins <b>5/25</b>. The key: only calls using the <b>mapped model ID (apiPlatformId)</b> from the table below count, earning two reward streams on the matching <b>Model Token ($MT)</b>: <b>staking boost + daily emission</b>. Calls using the model&#39;s original or any other name <b>don&#39;t count</b> this season.</p>
     </div>
     <div class="grid-3" data-anim>
       <div class="card blue">
         <div class="ico"><i data-lucide="map"></i></div>
-        <h3>第 1 步 · 用对模型名</h3>
-        <p><span class="nb">调用 AI</span> 时，把模型名填成下表右列的「指定模型名」（如 <span style="font-family:var(--mono);color:var(--blue);">gemini-3.5-flash-flocklife</span>）。<b style="color:#fff;font-weight:500">不会写代码也能参与</b>——用量按 <span class="nb">API Key</span> 归属：把你的 Key 交给开发者，或分享给有 AI 需求的人，他们的调用都算进你的奖励。</p>
+        <h3>Step 1 · Use the right model ID</h3>
+        <p>When you call AI, set the model name to the mapped model ID from the right column below (e.g. <span style="font-family:var(--mono);color:var(--blue);">gemini-3.5-flash-flocklife</span>). <b style="color:#fff;font-weight:500">No code needed to take part</b> — usage is attributed by API Key: hand your Key to a developer, or share it with anyone who needs AI; their calls all count toward your rewards.</p>
       </div>
       <div class="card">
         <div class="ico"><i data-lucide="anchor"></i></div>
-        <h3>第 2 步 · 质押对应代币</h3>
-        <p>每个 AI 模型都有自己的代币（Model Token，简称 MT）。把你在用的那个 MT <b style="color:#fff;font-weight:500">质押（锁仓）</b>，同样的用量能拿更多奖励。</p>
+        <h3>Step 2 · Stake the matching token</h3>
+        <p>Each AI model has its own token (Model Token, $MT). <b style="color:#fff;font-weight:500">Stake</b> the $MT of the model you use to earn more rewards at the same usage.</p>
       </div>
       <div class="card">
         <div class="ico"><i data-lucide="zap"></i></div>
-        <h3>第 3 步 · 领每日奖励</h3>
-        <p>用得越多 + 有质押，每天能分到的代币奖励就越多。</p>
+        <h3>Step 3 · Earn daily rewards</h3>
+        <p>The more you use plus staking, the larger your daily token rewards.</p>
       </div>
     </div>
   </div>
@@ -999,20 +968,20 @@
 <!-- ============ 02 · MODEL MAPPING TABLE ============ -->
 <section id="models">
   <div class="wrap">
-    <div class="sec-num" data-anim>02 — 模型映射表</div>
+    <div class="sec-num" data-anim>02 — MODEL MAPPING</div>
     <h2 data-anim>MT Address → <span class="accent">apiPlatformId</span></h2>
-    <p class="sec-intro" data-anim>下面 7 个模型已经在 FOMO &amp; API 平台上线，现在就能用。<b style="color:#fff;font-weight:500">左列</b>是模型代币地址(MT)，<b style="color:#fff;font-weight:500">右列</b>是调用时要填的<b style="color:#fff;font-weight:500">「指定模型名」</b>——认准右列那个名字。<b style="color:#fff;font-weight:500">点左列地址可一键复制。</b></p>
+    <p class="sec-intro" data-anim>These 7 models are already live on the FOMO &amp; API platforms — usable right now. The <b style="color:#fff;font-weight:500">left column</b> is the Model Token ($MT) address; the <b style="color:#fff;font-weight:500">right column</b> is the <b style="color:#fff;font-weight:500">mapped model ID</b> you put in your call. Use the right-column name. <b style="color:#fff;font-weight:500">Click a left-column address to copy it.</b></p>
     <div class="tbl-scroll" data-anim>
       <table class="tbl">
-        <thead><tr><th>MT 地址 · 点击复制</th><th>调用名 · apiPlatformId</th></tr></thead>
+        <thead><tr><th>MT Address · click to copy</th><th>Call name · apiPlatformId</th></tr></thead>
         <tbody>
-          <tr><td class="mono"><button type="button" class="addr-btn" aria-label="复制 MT 地址"><i data-lucide="copy" class="addr-ic"></i><span class="addr">0xbb3f2ba3ab521cb8651e0199adefcfc7bcc66038</span><span class="addr-ok">已复制</span></button></td><td class="api"><span class="mlogo"><svg viewBox="0 0 24 24"><title>Google Gemini</title><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>gemini-3.5-flash-flocklife</td></tr>
-          <tr><td class="mono"><button type="button" class="addr-btn" aria-label="复制 MT 地址"><i data-lucide="copy" class="addr-ic"></i><span class="addr">0x8b1f093aa9d87096d589aa2e83b65f34c29ca8f1</span><span class="addr-ok">已复制</span></button></td><td class="api"><span class="mlogo"><svg viewBox="0 0 24 24"><title>DeepSeek</title><path d="M23.748 4.651c-.254-.124-.364.113-.512.233-.051.04-.094.09-.137.137-.372.397-.806.657-1.373.626-.829-.046-1.537.214-2.163.848-.133-.782-.575-1.248-1.247-1.548-.352-.155-.708-.311-.955-.65-.172-.24-.219-.509-.305-.774-.055-.16-.11-.323-.293-.35-.2-.031-.278.136-.356.276-.313.572-.434 1.202-.422 1.84.027 1.436.633 2.58 1.838 3.393.137.094.172.187.129.323-.082.28-.18.553-.266.833-.055.179-.137.218-.328.14a5.5 5.5 0 0 1-1.737-1.179c-.857-.828-1.631-1.743-2.597-2.46a12 12 0 0 0-.689-.47c-.985-.957.13-1.743.387-1.836.27-.098.094-.433-.778-.428-.872.003-1.67.295-2.687.685a3 3 0 0 1-.465.136 9.6 9.6 0 0 0-2.883-.101c-1.885.21-3.39 1.1-4.497 2.622C.082 8.776-.231 10.854.152 13.02c.403 2.284 1.568 4.175 3.36 5.653 1.857 1.533 3.997 2.284 6.438 2.14 1.482-.085 3.132-.284 4.994-1.86.47.234.962.328 1.78.398.629.058 1.235-.031 1.705-.129.735-.155.684-.836.418-.961-2.155-1.004-1.682-.595-2.112-.926 1.095-1.295 2.768-3.598 3.284-6.733.05-.346.115-.834.108-1.114-.004-.171.035-.238.23-.257a4.2 4.2 0 0 0 1.545-.475c1.397-.763 1.96-2.016 2.093-3.517.02-.23-.004-.467-.247-.588M11.58 18.168c-2.088-1.642-3.101-2.183-3.52-2.16-.39.024-.32.472-.234.763.09.288.207.487.371.74.114.167.192.416-.113.603-.673.416-1.842-.14-1.897-.168-1.361-.801-2.5-1.86-3.301-3.306-.775-1.393-1.225-2.888-1.299-4.482-.02-.385.094-.522.477-.592a4.7 4.7 0 0 1 1.53-.038c2.131.311 3.946 1.264 5.467 2.774.868.86 1.525 1.887 2.202 2.89.72 1.066 1.494 2.082 2.48 2.915.348.291.626.513.892.677-.802.09-2.14.109-3.055-.615zm1.001-6.44a.306.306 0 0 1 .415-.287.3.3 0 0 1 .113.074.3.3 0 0 1 .086.214c0 .17-.136.307-.308.307a.303.303 0 0 1-.306-.307m3.11 1.596c-.2.081-.4.151-.591.16a1.25 1.25 0 0 1-.798-.254c-.274-.23-.47-.358-.551-.758a1.7 1.7 0 0 1 .015-.588c.07-.327-.007-.537-.238-.727-.188-.156-.426-.199-.689-.199a.6.6 0 0 1-.254-.078.253.253 0 0 1-.114-.358 1 1 0 0 1 .192-.21c.356-.202.767-.136 1.146.016.352.144.618.408 1.001.782.392.451.462.576.685.915.176.264.336.536.446.848.066.194-.02.353-.25.45"/></svg></span>deepseek-v4-pro-dslife</td></tr>
-          <tr><td class="mono"><button type="button" class="addr-btn" aria-label="复制 MT 地址"><i data-lucide="copy" class="addr-ic"></i><span class="addr">0x758c3393554929449f5d5bb507737caa0bf07fb1</span><span class="addr-ok">已复制</span></button></td><td class="api"><span class="mlogo"><svg viewBox="0 0 24 24"><title>DeepSeek</title><path d="M23.748 4.651c-.254-.124-.364.113-.512.233-.051.04-.094.09-.137.137-.372.397-.806.657-1.373.626-.829-.046-1.537.214-2.163.848-.133-.782-.575-1.248-1.247-1.548-.352-.155-.708-.311-.955-.65-.172-.24-.219-.509-.305-.774-.055-.16-.11-.323-.293-.35-.2-.031-.278.136-.356.276-.313.572-.434 1.202-.422 1.84.027 1.436.633 2.58 1.838 3.393.137.094.172.187.129.323-.082.28-.18.553-.266.833-.055.179-.137.218-.328.14a5.5 5.5 0 0 1-1.737-1.179c-.857-.828-1.631-1.743-2.597-2.46a12 12 0 0 0-.689-.47c-.985-.957.13-1.743.387-1.836.27-.098.094-.433-.778-.428-.872.003-1.67.295-2.687.685a3 3 0 0 1-.465.136 9.6 9.6 0 0 0-2.883-.101c-1.885.21-3.39 1.1-4.497 2.622C.082 8.776-.231 10.854.152 13.02c.403 2.284 1.568 4.175 3.36 5.653 1.857 1.533 3.997 2.284 6.438 2.14 1.482-.085 3.132-.284 4.994-1.86.47.234.962.328 1.78.398.629.058 1.235-.031 1.705-.129.735-.155.684-.836.418-.961-2.155-1.004-1.682-.595-2.112-.926 1.095-1.295 2.768-3.598 3.284-6.733.05-.346.115-.834.108-1.114-.004-.171.035-.238.23-.257a4.2 4.2 0 0 0 1.545-.475c1.397-.763 1.96-2.016 2.093-3.517.02-.23-.004-.467-.247-.588M11.58 18.168c-2.088-1.642-3.101-2.183-3.52-2.16-.39.024-.32.472-.234.763.09.288.207.487.371.74.114.167.192.416-.113.603-.673.416-1.842-.14-1.897-.168-1.361-.801-2.5-1.86-3.301-3.306-.775-1.393-1.225-2.888-1.299-4.482-.02-.385.094-.522.477-.592a4.7 4.7 0 0 1 1.53-.038c2.131.311 3.946 1.264 5.467 2.774.868.86 1.525 1.887 2.202 2.89.72 1.066 1.494 2.082 2.48 2.915.348.291.626.513.892.677-.802.09-2.14.109-3.055-.615zm1.001-6.44a.306.306 0 0 1 .415-.287.3.3 0 0 1 .113.074.3.3 0 0 1 .086.214c0 .17-.136.307-.308.307a.303.303 0 0 1-.306-.307m3.11 1.596c-.2.081-.4.151-.591.16a1.25 1.25 0 0 1-.798-.254c-.274-.23-.47-.358-.551-.758a1.7 1.7 0 0 1 .015-.588c.07-.327-.007-.537-.238-.727-.188-.156-.426-.199-.689-.199a.6.6 0 0 1-.254-.078.253.253 0 0 1-.114-.358 1 1 0 0 1 .192-.21c.356-.202.767-.136 1.146.016.352.144.618.408 1.001.782.392.451.462.576.685.915.176.264.336.536.446.848.066.194-.02.353-.25.45"/></svg></span>deepseek-v4-flash-dsikh</td></tr>
-          <tr><td class="mono"><button type="button" class="addr-btn" aria-label="复制 MT 地址"><i data-lucide="copy" class="addr-ic"></i><span class="addr">0xa64b06d0f5a072911ae149a63608d213fc70537b</span><span class="addr-ok">已复制</span></button></td><td class="api"><span class="mlogo"><svg viewBox="0 0 24 24"><title>Moonshot AI · Kimi</title><path d="m1.053 16.91 9.538 2.55a21 20.981 0 0 0 .06 2.031l5.956 1.592a12 11.99 0 0 1-15.554-6.172m-1.02-5.79 11.352 3.035a21 20.981 0 0 0-.469 2.01l10.817 2.89a12 11.99 0 0 1-1.845 2.004L.658 15.918a12 11.99 0 0 1-.625-4.796m1.593-5.146L13.573 9.17a21 20.981 0 0 0-1.01 1.874l11.297 3.02a21 20.981 0 0 1-.67 2.362l-11.55-3.087L.125 10.26a12 11.99 0 0 1 1.499-4.285ZM6.067 1.58l11.285 3.016a21 20.981 0 0 0-1.688 1.719l7.824 2.091a21 20.981 0 0 1 .513 2.664L2.107 5.218a12 11.99 0 0 1 3.96-3.638M21.68 4.866 7.222 1.003A12 11.99 0 0 1 21.68 4.866"/></svg></span>kimi-k2.6-llm</td></tr>
-          <tr><td class="mono"><button type="button" class="addr-btn" aria-label="复制 MT 地址"><i data-lucide="copy" class="addr-ic"></i><span class="addr">0x271415a029602f9c370d022adeba703f172c79ff</span><span class="addr-ok">已复制</span></button></td><td class="api"><span class="mlogo"><svg viewBox="0 0 24 24"><title>Moonshot AI · Kimi</title><path d="m1.053 16.91 9.538 2.55a21 20.981 0 0 0 .06 2.031l5.956 1.592a12 11.99 0 0 1-15.554-6.172m-1.02-5.79 11.352 3.035a21 20.981 0 0 0-.469 2.01l10.817 2.89a12 11.99 0 0 1-1.845 2.004L.658 15.918a12 11.99 0 0 1-.625-4.796m1.593-5.146L13.573 9.17a21 20.981 0 0 0-1.01 1.874l11.297 3.02a21 20.981 0 0 1-.67 2.362l-11.55-3.087L.125 10.26a12 11.99 0 0 1 1.499-4.285ZM6.067 1.58l11.285 3.016a21 20.981 0 0 0-1.688 1.719l7.824 2.091a21 20.981 0 0 1 .513 2.664L2.107 5.218a12 11.99 0 0 1 3.96-3.638M21.68 4.866 7.222 1.003A12 11.99 0 0 1 21.68 4.866"/></svg></span>kimi-k2.6-vc</td></tr>
-          <tr><td class="mono"><button type="button" class="addr-btn" aria-label="复制 MT 地址"><i data-lucide="copy" class="addr-ic"></i><span class="addr">0x47b031baab2cb9a0d4a5bd75473c479b13c38481</span><span class="addr-ok">已复制</span></button></td><td class="api"><span class="mlogo"><svg viewBox="0 0 24 24"><title>Google Gemini</title><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>gemini-3.1-pro-deai</td></tr>
-          <tr><td class="mono"><button type="button" class="addr-btn" aria-label="复制 MT 地址"><i data-lucide="copy" class="addr-ic"></i><span class="addr">0x5a9c1d061003a3191836c26affba87ad8833c9d7</span><span class="addr-ok">已复制</span></button></td><td class="api"><span class="mlogo"><svg viewBox="0 0 24 24"><title>Google Gemini</title><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>gemini-3.5-flash-cheap</td></tr>
+          <tr><td class="mono"><button type="button" class="addr-btn" aria-label="Copy MT address"><i data-lucide="copy" class="addr-ic"></i><span class="addr">0xbb3f2ba3ab521cb8651e0199adefcfc7bcc66038</span><span class="addr-ok">Copied</span></button></td><td class="api"><span class="mlogo"><svg viewBox="0 0 24 24"><title>Google Gemini</title><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>gemini-3.5-flash-flocklife</td></tr>
+          <tr><td class="mono"><button type="button" class="addr-btn" aria-label="Copy MT address"><i data-lucide="copy" class="addr-ic"></i><span class="addr">0x8b1f093aa9d87096d589aa2e83b65f34c29ca8f1</span><span class="addr-ok">Copied</span></button></td><td class="api"><span class="mlogo"><svg viewBox="0 0 24 24"><title>DeepSeek</title><path d="M23.748 4.651c-.254-.124-.364.113-.512.233-.051.04-.094.09-.137.137-.372.397-.806.657-1.373.626-.829-.046-1.537.214-2.163.848-.133-.782-.575-1.248-1.247-1.548-.352-.155-.708-.311-.955-.65-.172-.24-.219-.509-.305-.774-.055-.16-.11-.323-.293-.35-.2-.031-.278.136-.356.276-.313.572-.434 1.202-.422 1.84.027 1.436.633 2.58 1.838 3.393.137.094.172.187.129.323-.082.28-.18.553-.266.833-.055.179-.137.218-.328.14a5.5 5.5 0 0 1-1.737-1.179c-.857-.828-1.631-1.743-2.597-2.46a12 12 0 0 0-.689-.47c-.985-.957.13-1.743.387-1.836.27-.098.094-.433-.778-.428-.872.003-1.67.295-2.687.685a3 3 0 0 1-.465.136 9.6 9.6 0 0 0-2.883-.101c-1.885.21-3.39 1.1-4.497 2.622C.082 8.776-.231 10.854.152 13.02c.403 2.284 1.568 4.175 3.36 5.653 1.857 1.533 3.997 2.284 6.438 2.14 1.482-.085 3.132-.284 4.994-1.86.47.234.962.328 1.78.398.629.058 1.235-.031 1.705-.129.735-.155.684-.836.418-.961-2.155-1.004-1.682-.595-2.112-.926 1.095-1.295 2.768-3.598 3.284-6.733.05-.346.115-.834.108-1.114-.004-.171.035-.238.23-.257a4.2 4.2 0 0 0 1.545-.475c1.397-.763 1.96-2.016 2.093-3.517.02-.23-.004-.467-.247-.588M11.58 18.168c-2.088-1.642-3.101-2.183-3.52-2.16-.39.024-.32.472-.234.763.09.288.207.487.371.74.114.167.192.416-.113.603-.673.416-1.842-.14-1.897-.168-1.361-.801-2.5-1.86-3.301-3.306-.775-1.393-1.225-2.888-1.299-4.482-.02-.385.094-.522.477-.592a4.7 4.7 0 0 1 1.53-.038c2.131.311 3.946 1.264 5.467 2.774.868.86 1.525 1.887 2.202 2.89.72 1.066 1.494 2.082 2.48 2.915.348.291.626.513.892.677-.802.09-2.14.109-3.055-.615zm1.001-6.44a.306.306 0 0 1 .415-.287.3.3 0 0 1 .113.074.3.3 0 0 1 .086.214c0 .17-.136.307-.308.307a.303.303 0 0 1-.306-.307m3.11 1.596c-.2.081-.4.151-.591.16a1.25 1.25 0 0 1-.798-.254c-.274-.23-.47-.358-.551-.758a1.7 1.7 0 0 1 .015-.588c.07-.327-.007-.537-.238-.727-.188-.156-.426-.199-.689-.199a.6.6 0 0 1-.254-.078.253.253 0 0 1-.114-.358 1 1 0 0 1 .192-.21c.356-.202.767-.136 1.146.016.352.144.618.408 1.001.782.392.451.462.576.685.915.176.264.336.536.446.848.066.194-.02.353-.25.45"/></svg></span>deepseek-v4-pro-dslife</td></tr>
+          <tr><td class="mono"><button type="button" class="addr-btn" aria-label="Copy MT address"><i data-lucide="copy" class="addr-ic"></i><span class="addr">0x758c3393554929449f5d5bb507737caa0bf07fb1</span><span class="addr-ok">Copied</span></button></td><td class="api"><span class="mlogo"><svg viewBox="0 0 24 24"><title>DeepSeek</title><path d="M23.748 4.651c-.254-.124-.364.113-.512.233-.051.04-.094.09-.137.137-.372.397-.806.657-1.373.626-.829-.046-1.537.214-2.163.848-.133-.782-.575-1.248-1.247-1.548-.352-.155-.708-.311-.955-.65-.172-.24-.219-.509-.305-.774-.055-.16-.11-.323-.293-.35-.2-.031-.278.136-.356.276-.313.572-.434 1.202-.422 1.84.027 1.436.633 2.58 1.838 3.393.137.094.172.187.129.323-.082.28-.18.553-.266.833-.055.179-.137.218-.328.14a5.5 5.5 0 0 1-1.737-1.179c-.857-.828-1.631-1.743-2.597-2.46a12 12 0 0 0-.689-.47c-.985-.957.13-1.743.387-1.836.27-.098.094-.433-.778-.428-.872.003-1.67.295-2.687.685a3 3 0 0 1-.465.136 9.6 9.6 0 0 0-2.883-.101c-1.885.21-3.39 1.1-4.497 2.622C.082 8.776-.231 10.854.152 13.02c.403 2.284 1.568 4.175 3.36 5.653 1.857 1.533 3.997 2.284 6.438 2.14 1.482-.085 3.132-.284 4.994-1.86.47.234.962.328 1.78.398.629.058 1.235-.031 1.705-.129.735-.155.684-.836.418-.961-2.155-1.004-1.682-.595-2.112-.926 1.095-1.295 2.768-3.598 3.284-6.733.05-.346.115-.834.108-1.114-.004-.171.035-.238.23-.257a4.2 4.2 0 0 0 1.545-.475c1.397-.763 1.96-2.016 2.093-3.517.02-.23-.004-.467-.247-.588M11.58 18.168c-2.088-1.642-3.101-2.183-3.52-2.16-.39.024-.32.472-.234.763.09.288.207.487.371.74.114.167.192.416-.113.603-.673.416-1.842-.14-1.897-.168-1.361-.801-2.5-1.86-3.301-3.306-.775-1.393-1.225-2.888-1.299-4.482-.02-.385.094-.522.477-.592a4.7 4.7 0 0 1 1.53-.038c2.131.311 3.946 1.264 5.467 2.774.868.86 1.525 1.887 2.202 2.89.72 1.066 1.494 2.082 2.48 2.915.348.291.626.513.892.677-.802.09-2.14.109-3.055-.615zm1.001-6.44a.306.306 0 0 1 .415-.287.3.3 0 0 1 .113.074.3.3 0 0 1 .086.214c0 .17-.136.307-.308.307a.303.303 0 0 1-.306-.307m3.11 1.596c-.2.081-.4.151-.591.16a1.25 1.25 0 0 1-.798-.254c-.274-.23-.47-.358-.551-.758a1.7 1.7 0 0 1 .015-.588c.07-.327-.007-.537-.238-.727-.188-.156-.426-.199-.689-.199a.6.6 0 0 1-.254-.078.253.253 0 0 1-.114-.358 1 1 0 0 1 .192-.21c.356-.202.767-.136 1.146.016.352.144.618.408 1.001.782.392.451.462.576.685.915.176.264.336.536.446.848.066.194-.02.353-.25.45"/></svg></span>deepseek-v4-flash-dsikh</td></tr>
+          <tr><td class="mono"><button type="button" class="addr-btn" aria-label="Copy MT address"><i data-lucide="copy" class="addr-ic"></i><span class="addr">0xa64b06d0f5a072911ae149a63608d213fc70537b</span><span class="addr-ok">Copied</span></button></td><td class="api"><span class="mlogo"><svg viewBox="0 0 24 24"><title>Moonshot AI · Kimi</title><path d="m1.053 16.91 9.538 2.55a21 20.981 0 0 0 .06 2.031l5.956 1.592a12 11.99 0 0 1-15.554-6.172m-1.02-5.79 11.352 3.035a21 20.981 0 0 0-.469 2.01l10.817 2.89a12 11.99 0 0 1-1.845 2.004L.658 15.918a12 11.99 0 0 1-.625-4.796m1.593-5.146L13.573 9.17a21 20.981 0 0 0-1.01 1.874l11.297 3.02a21 20.981 0 0 1-.67 2.362l-11.55-3.087L.125 10.26a12 11.99 0 0 1 1.499-4.285ZM6.067 1.58l11.285 3.016a21 20.981 0 0 0-1.688 1.719l7.824 2.091a21 20.981 0 0 1 .513 2.664L2.107 5.218a12 11.99 0 0 1 3.96-3.638M21.68 4.866 7.222 1.003A12 11.99 0 0 1 21.68 4.866"/></svg></span>kimi-k2.6-llm</td></tr>
+          <tr><td class="mono"><button type="button" class="addr-btn" aria-label="Copy MT address"><i data-lucide="copy" class="addr-ic"></i><span class="addr">0x271415a029602f9c370d022adeba703f172c79ff</span><span class="addr-ok">Copied</span></button></td><td class="api"><span class="mlogo"><svg viewBox="0 0 24 24"><title>Moonshot AI · Kimi</title><path d="m1.053 16.91 9.538 2.55a21 20.981 0 0 0 .06 2.031l5.956 1.592a12 11.99 0 0 1-15.554-6.172m-1.02-5.79 11.352 3.035a21 20.981 0 0 0-.469 2.01l10.817 2.89a12 11.99 0 0 1-1.845 2.004L.658 15.918a12 11.99 0 0 1-.625-4.796m1.593-5.146L13.573 9.17a21 20.981 0 0 0-1.01 1.874l11.297 3.02a21 20.981 0 0 1-.67 2.362l-11.55-3.087L.125 10.26a12 11.99 0 0 1 1.499-4.285ZM6.067 1.58l11.285 3.016a21 20.981 0 0 0-1.688 1.719l7.824 2.091a21 20.981 0 0 1 .513 2.664L2.107 5.218a12 11.99 0 0 1 3.96-3.638M21.68 4.866 7.222 1.003A12 11.99 0 0 1 21.68 4.866"/></svg></span>kimi-k2.6-vc</td></tr>
+          <tr><td class="mono"><button type="button" class="addr-btn" aria-label="Copy MT address"><i data-lucide="copy" class="addr-ic"></i><span class="addr">0x47b031baab2cb9a0d4a5bd75473c479b13c38481</span><span class="addr-ok">Copied</span></button></td><td class="api"><span class="mlogo"><svg viewBox="0 0 24 24"><title>Google Gemini</title><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>gemini-3.1-pro-deai</td></tr>
+          <tr><td class="mono"><button type="button" class="addr-btn" aria-label="Copy MT address"><i data-lucide="copy" class="addr-ic"></i><span class="addr">0x5a9c1d061003a3191836c26affba87ad8833c9d7</span><span class="addr-ok">Copied</span></button></td><td class="api"><span class="mlogo"><svg viewBox="0 0 24 24"><title>Google Gemini</title><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>gemini-3.5-flash-cheap</td></tr>
         </tbody>
       </table>
     </div>
@@ -1022,13 +991,13 @@
 <!-- ============ 03 · API EXAMPLE ============ -->
 <section id="usage">
   <div class="wrap">
-    <div class="sec-num" data-anim>03 — 调用示例</div>
-    <h2 data-anim>给开发者的<span class="accent">调用示例</span></h2>
-    <p class="sec-intro" data-anim>下面是给开发者的示例：把 <span style="font-family:var(--mono);color:var(--blue);">"model"</span> 换成你要用的<b style="color:#fff;font-weight:500">「指定模型名」</b>，把 <span style="font-family:var(--mono);color:var(--blue);">sk-xxxx</span> 换成你的 API Key 即可。<b style="color:#fff;font-weight:500">不写代码的朋友</b>：把这段交给开发者，或直接在 FOMO 平台用这些模型，一样累积用量。</p>
+    <div class="sec-num" data-anim>03 — EXAMPLE CALL</div>
+    <h2 data-anim>Example call <span class="accent">for developers</span></h2>
+    <p class="sec-intro" data-anim>A sample for developers: set <span style="font-family:var(--mono);color:var(--blue);">"model"</span> to the <b style="color:#fff;font-weight:500">mapped model ID</b> you want, and replace <span style="font-family:var(--mono);color:var(--blue);">sk-xxxx</span> with your API Key. <b style="color:#fff;font-weight:500">Not a coder?</b> Hand this to a developer, or just use these models directly on the FOMO platform — it accrues usage all the same.</p>
     <div class="codeblock" data-anim>
       <div class="cb-head">
         <span class="cb-title">cURL · api.flock.io</span>
-        <button type="button" class="cb-copy"><i data-lucide="copy"></i><span class="cb-lbl">复制</span></button>
+        <button type="button" class="cb-copy"><i data-lucide="copy"></i><span class="cb-lbl">Copy</span></button>
       </div>
       <pre><code>curl --location 'https://api.flock.io/v1/chat/completions' \
 --header 'Content-Type: application/json' \
@@ -1050,7 +1019,7 @@
     </div>
     <div class="callout info" data-anim style="margin-top:18px;">
       <span class="ci"><i data-lucide="book-open"></i></span>
-      <p>想看全部规则细节，见官方文档：<a href="https://docs.flock.io/flock-tokenomics/network-participation/fomo" target="_blank" rel="noopener" style="color:var(--blue);">docs.flock.io/flock-tokenomics/network-participation/fomo</a></p>
+      <p>For full rules, see the official docs: <a href="https://docs.flock.io/flock-tokenomics/network-participation/fomo" target="_blank" rel="noopener" style="color:var(--blue);">docs.flock.io/flock-tokenomics/network-participation/fomo</a></p>
     </div>
   </div>
 </section>
@@ -1058,29 +1027,29 @@
 <!-- ============ 04 · FRAMEWORK RECAP (沿用 S1) ============ -->
 <section id="framework">
   <div class="wrap">
-    <div class="sec-num" data-anim>04 — 奖励框架（沿用 S1）</div>
-    <h2 data-anim>决定你能分多少的<span class="accent">三件事</span></h2>
-    <p class="sec-intro" data-anim>Season 2 沿用 Season 1 的逻辑：<b style="color:#fff;font-weight:500">真实地用 AI，就能持续赚奖励</b>。下面是大框架；具体数值（各模型分配比例、发放周期、gmFLOCK 加成倍数等）以官方 <b style="color:#fff;font-weight:500">5/25</b> 公布为准。</p>
+    <div class="sec-num" data-anim>04 — REWARD FRAMEWORK (SAME AS S1)</div>
+    <h2 data-anim>Three things that <span class="accent">decide your share</span></h2>
+    <p class="sec-intro" data-anim>Season 2 keeps the Season 1 logic: <b style="color:#fff;font-weight:500">use AI for real, keep earning rewards</b>. Here is the framework; exact numbers (per-model allocation, emission schedule, gmFLOCK multiplier, etc.) follow the official announcement on <b style="color:#fff;font-weight:500">5/25</b>.</p>
     <div class="grid-3" data-anim>
       <div class="card">
         <div class="ico"><i data-lucide="trending-up"></i></div>
-        <h3>用得多，分得多</h3>
-        <p>你在某个模型上分到的奖励，与你在它上面的花费占比成正比——奖励<b style="color:#fff;font-weight:500">真实使用</b>，不是机器刷量。</p>
+        <h3>Use more, earn more</h3>
+        <p>Your reward on a model is proportional to your share of spend on it — it rewards <b style="color:#fff;font-weight:500">real usage</b>, not bot farming.</p>
       </div>
       <div class="card">
         <div class="ico"><i data-lucide="anchor"></i></div>
-        <h3>质押 MT 加成</h3>
-        <p>把你正在用的模型代币(MT)<b style="color:#fff;font-weight:500">质押(锁仓)</b>，同样花费能拿更多；越早质押，优势越明显。</p>
+        <h3>Stake $MT for a boost</h3>
+        <p><b style="color:#fff;font-weight:500">Stake</b> the Model Token ($MT) of the model you use to earn more at the same spend; the earlier you stake, the bigger the edge.</p>
       </div>
       <div class="card">
         <div class="ico"><i data-lucide="gem"></i></div>
-        <h3>gmFLOCK · 全场加成卡</h3>
-        <p><span class="nb">质押 FLOCK</span> 会拿到 <b style="color:#fff;font-weight:500">gmFLOCK</b>，它像一张<b style="color:#fff;font-weight:500"><span class="nb">全场 VIP 卡</span></b>——你在每个模型上的得分都会被一起放大。</p>
+        <h3>gmFLOCK · all-access pass</h3>
+        <p>Staking $FLOCK gives you <b style="color:#fff;font-weight:500">gmFLOCK</b> — like an <b style="color:#fff;font-weight:500">all-access VIP pass</b> that scales up your score across every model at once.</p>
       </div>
     </div>
     <div class="callout warn" data-anim style="margin-top:24px;">
       <span class="ci"><i data-lucide="info"></i></span>
-      <p><b>注意</b>：以上是大框架，Season 2 的精确权重与发放细则由官方在 5/25 前后公布，本页会同步更新。本页为教育说明，<b>不构成投资建议</b>。</p>
+      <p><b>Note</b>: this is the framework; Season 2&#39;s exact weights and emission details will be published officially around 5/25, and this page will update accordingly. This page is for education and <b>is not investment advice</b>.</p>
     </div>
   </div>
 </section>
@@ -1088,28 +1057,28 @@
 <!-- ============ 05 · TRANSITION TIMELINE ============ -->
 <section id="timeline">
   <div class="wrap">
-    <div class="sec-num" data-anim>05 — 过渡时间线</div>
-    <h2 data-anim>从 S1 到 <span class="accent">S2</span></h2>
+    <div class="sec-num" data-anim>05 — TRANSITION TIMELINE</div>
+    <h2 data-anim>From S1 to <span class="accent">S2</span></h2>
     <div class="grid-2" data-anim>
       <div class="card">
-        <div class="chip" style="align-self:flex-start;margin-bottom:12px;"><b>5/22</b> · 今天</div>
-        <h3>Season 1 结束</h3>
-        <p>S1 收官，最后一次奖励推送在 5/22 完成。</p>
+        <div class="chip" style="align-self:flex-start;margin-bottom:12px;"><b>5/22</b> · today</div>
+        <h3>Season 1 ends</h3>
+        <p>S1 wraps up; the final reward push completes on 5/22.</p>
       </div>
       <div class="card">
-        <div class="chip" style="align-self:flex-start;margin-bottom:12px;"><b>5/22 起</b></div>
-        <h3>用量清零刷新</h3>
-        <p>S1 结束后用量清零，大家从同一起跑线；从 5/22 起，调用就开始为 Season 2 累积。</p>
+        <div class="chip" style="align-self:flex-start;margin-bottom:12px;"><b>from 5/22</b></div>
+        <h3>Usage resets</h3>
+        <p>After S1 ends, usage resets — everyone starts from the same line; from 5/22, your calls begin accruing toward Season 2.</p>
       </div>
       <div class="card">
-        <div class="chip" style="align-self:flex-start;margin-bottom:12px;"><b>现在即可</b></div>
-        <h3>模型已上线</h3>
-        <p>上表模型已上线。现在用<b style="color:#fff;font-weight:500">「指定模型名」</b>调用，用量<b style="color:#fff;font-weight:500">即刻计入 Season 2</b>——不必等到周一。</p>
+        <div class="chip" style="align-self:flex-start;margin-bottom:12px;"><b>right now</b></div>
+        <h3>Models are live</h3>
+        <p>The models above are live. Call them now with the <b style="color:#fff;font-weight:500">mapped model ID</b> and usage <b style="color:#fff;font-weight:500">counts toward Season 2 immediately</b> — no need to wait for Monday.</p>
       </div>
       <div class="card blue">
         <div class="chip" style="align-self:flex-start;margin-bottom:12px;border-color:var(--border-blue);background:rgba(55,115,255,0.10);color:#fff;"><b>5/25</b></div>
-        <h3>Season 2 正式开始</h3>
-        <p>下周一 S2 正式启动，质押加成与每日奖励生效；而你的用量从 5/22 起就已经在累积了。</p>
+        <h3>Season 2 officially starts</h3>
+        <p>S2 officially launches Monday — staking boost and daily rewards take effect; meanwhile your usage has been accruing since 5/22.</p>
       </div>
     </div>
   </div>
@@ -1121,11 +1090,11 @@
 <section id="next" style="border-top:1px solid var(--border);">
   <div class="wrap">
     <div class="cta" data-anim>
-      <h2>准备好参与 Season 2 了吗？</h2>
-      <p>今天（5/22）起，用上表的<b style="color:#fff;font-weight:500">「指定模型名」</b>在 FOMO / API 平台发起真实调用，就能为 Season 2 累积质押加成和每日奖励。<b style="color:#fff;font-weight:500">不写代码也能参与</b>——持有并质押对应的模型代币(MT)即可。</p>
+      <h2>Ready to join Season 2?</h2>
+      <p>From today (5/22), make real calls with the <b style="color:#fff;font-weight:500">mapped model ID</b> above on the FOMO / API platform to accrue staking boost and daily rewards for Season 2. <b style="color:#fff;font-weight:500">No code required</b> — just hold and stake the matching Model Token ($MT).</p>
       <div class="btn-row">
-        <a class="btn btn-primary" href="https://fomo.flock.io" target="_blank" rel="noopener">前往 FOMO 平台<i data-lucide="arrow-up-right"></i></a>
-        <a class="btn btn-ghost" href="/">返回新手手册</a>
+        <a class="btn btn-primary" href="https://fomo.flock.io" target="_blank" rel="noopener">Go to FOMO App<i data-lucide="arrow-up-right"></i></a>
+        <a class="btn btn-ghost" href="fomo-newbie-guide_May.html">Back to guide</a>
       </div>
     </div>
   </div>
@@ -1135,7 +1104,7 @@
   <div class="wrap foot">
     <div class="foot-brand">
     <svg class="logo" viewBox="0 0 145 121" xmlns="http://www.w3.org/2000/svg" aria-label="FLock"><path d="M50.952 0.0469427H17.778H0.00012207V17.8477V40.987L17.778 58.7453V40.987V17.8477H50.952H68.7298L50.952 0.0469427Z" fill="white"/><path d="M50.952 61.9942H17.778H0.00012207V79.7949V102.934L17.778 120.693V102.934V79.7949H50.952H68.7298L50.952 61.9942Z" fill="white"/><path d="M79.2562 0H96.3725L96.3725 93.2475H144.471V108.98H79.2562V0Z" fill="white"/></svg>
-    <span>FOMO Reward Season 2 · Real AI. Real Impact.</span>
+    <span>FOMO Reward Season 2 · Real AI. Real Impact.</span>
     </div>
     <div class="foot-social">
       <a class="foot-soc" href="https://discord.gg/UrBbUjR6dM" target="_blank" rel="noopener" aria-label="FLock Discord"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg></a>
@@ -1169,134 +1138,18 @@
       });
     });
   });
-
-  // Header — Season dropdown (click toggle + desktop hover + outside click + esc + soon-item guard)
   (function(){
-    var dd  = document.getElementById('seasonDD');
-    var btn = document.getElementById('seasonBtn');
-    if(!dd || !btn) return;
-    var langDD = document.getElementById('langDD');
-    var langBtn = document.getElementById('langBtn');
-    var hoverCapable = window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-    var hoverCloseTimer = null;
-    var HOVER_CLOSE_DELAY = 100;
-    function closeLang(){
-      if(!langDD || !langBtn) return;
-      langDD.dataset.open='false';
-      langBtn.setAttribute('aria-expanded','false');
-    }
+    var dd=document.getElementById('seasonDD');
+    var btn=document.getElementById('seasonBtn');
+    if(!dd||!btn) return;
     function close(){ dd.dataset.open='false'; btn.setAttribute('aria-expanded','false'); }
-    function open(){
-      if(hoverCloseTimer){ window.clearTimeout(hoverCloseTimer); hoverCloseTimer = null; }
-      closeLang();
-      dd.dataset.open='true';
-      btn.setAttribute('aria-expanded','true');
-    }
-    function scheduleClose(){
-      if(hoverCloseTimer) window.clearTimeout(hoverCloseTimer);
-      hoverCloseTimer = window.setTimeout(function(){
-        close();
-        hoverCloseTimer = null;
-      }, HOVER_CLOSE_DELAY);
-    }
-    btn.addEventListener('click', function(e){
-      e.stopPropagation();
-      (dd.dataset.open==='true') ? close() : open();
-    });
-    document.addEventListener('click', function(e){
-      if(!dd.contains(e.target)) close();
-    });
-    document.addEventListener('keydown', function(e){
-      if(e.key==='Escape') close();
-    });
-    dd.querySelectorAll('a.hbar-dd-item[href^="#"]').forEach(function(a){
-      a.addEventListener('click', function(){ close(); });
-    });
-    dd.querySelectorAll('.hbar-dd-item-soon').forEach(function(a){
-      a.addEventListener('click', function(e){ e.preventDefault(); });
-    });
-    if(hoverCapable){
-      dd.addEventListener('mouseenter', function(){
-        if(hoverCloseTimer){ window.clearTimeout(hoverCloseTimer); hoverCloseTimer = null; }
-        open();
-      });
-      dd.addEventListener('mouseleave', function(){
-        scheduleClose();
-      });
-    }
+    function open(){ dd.dataset.open='true'; btn.setAttribute('aria-expanded','true'); }
+    btn.addEventListener('click',function(e){ e.preventDefault(); (dd.dataset.open==='true')?close():open(); });
+    document.addEventListener('click',function(e){ if(!dd.contains(e.target)) close(); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+    dd.querySelectorAll('a.hbar-dd-item[href^="#"]').forEach(function(a){ a.addEventListener('click',close); });
+    dd.querySelectorAll('.hbar-dd-item-soon').forEach(function(a){ a.addEventListener('click',function(e){ e.preventDefault(); }); });
   })();
-
-
-  // Header — Language dropdown (click toggle + desktop hover; closes Season menu)
-  (function(){
-    var dd  = document.getElementById('langDD');
-    var btn = document.getElementById('langBtn');
-    var menu = document.getElementById('langMenu');
-    var season = document.getElementById('seasonDD');
-    var seasonBtn = document.getElementById('seasonBtn');
-    if(!dd || !btn) return;
-    var hoverCapable = window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-    var hoverCloseTimer = null;
-    var HOVER_CLOSE_DELAY = 100;
-    var ignoreOutside = false;
-    function closeSeason(){
-      if(!season || !seasonBtn) return;
-      season.dataset.open='false';
-      seasonBtn.setAttribute('aria-expanded','false');
-    }
-    function close(){ dd.dataset.open='false'; btn.setAttribute('aria-expanded','false'); }
-    function open(){
-      if(hoverCloseTimer){ window.clearTimeout(hoverCloseTimer); hoverCloseTimer = null; }
-      closeSeason();
-      dd.dataset.open='true';
-      btn.setAttribute('aria-expanded','true');
-    }
-    function scheduleClose(){
-      if(hoverCloseTimer) window.clearTimeout(hoverCloseTimer);
-      hoverCloseTimer = window.setTimeout(function(){
-        close();
-        hoverCloseTimer = null;
-      }, HOVER_CLOSE_DELAY);
-    }
-    btn.addEventListener('click', function(e){
-      e.stopPropagation();
-      ignoreOutside = true;
-      (dd.dataset.open==='true') ? close() : open();
-      window.setTimeout(function(){ ignoreOutside = false; }, 0);
-    });
-    if(menu){
-      menu.addEventListener('click', function(e){
-        e.stopPropagation();
-      });
-    }
-    document.addEventListener('click', function(e){
-      if(ignoreOutside) return;
-      if(!dd.contains(e.target)) close();
-    });
-    document.addEventListener('keydown', function(e){
-      if(e.key==='Escape') close();
-    });
-    if(seasonBtn){
-      seasonBtn.addEventListener('click', function(){
-        if(season && season.dataset.open==='true') close();
-      }, true);
-    }
-    if(season){
-      season.addEventListener('click', function(e){
-        if(season.dataset.open==='true' && !dd.contains(e.target)) close();
-      });
-    }
-    if(hoverCapable){
-      dd.addEventListener('mouseenter', function(){
-        if(hoverCloseTimer){ window.clearTimeout(hoverCloseTimer); hoverCloseTimer = null; }
-        open();
-      });
-      dd.addEventListener('mouseleave', function(){
-        scheduleClose();
-      });
-    }
-  })();
-
   (function(){
     var items=document.querySelectorAll('[data-anim]');
     var rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1403,30 +1256,6 @@
       s.addEventListener('mouseleave',function(){ if(orbit) orbit.style.animationPlayState='running'; idx=(i+1)%steps.length; start(); });
     });
   })();
-</script>
-<script>
-  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-</script>
-<script defer src="/_vercel/insights/script.js"></script>
-<script>
-(function(){
-  function detectLang(){
-    var parts = location.pathname.replace(/\/$/,'').split('/').filter(Boolean);
-    var langs = {en:1,ko:1,ja:1};
-    for (var i = parts.length - 1; i >= 0; i--) {
-      if (langs[parts[i]]) return parts[i];
-    }
-    return 'zh';
-  }
-  function trackLang(){
-    va('event', {
-      name: 'Page view by language',
-      data: { lang: detectLang(), page: location.pathname || '/' }
-    });
-  }
-  if (document.readyState === 'complete') trackLang();
-  else window.addEventListener('load', trackLang);
-})();
 </script>
 </body>
 </html>
