@@ -1,0 +1,72 @@
+{
+  "checkedOn": "2026-09-23",
+  "idSource": "S3 model upgrade list supplied by the user; keep the new S3 IDs.",
+  "note": "DSIKH still exposes deepseek-v4-flash-dsikh in its project API. The S3 ID is user-supplied, pending platform field synchronization. Token presence does not establish S3 reward eligibility.",
+  "models": [
+    {
+      "symbol": "FLOCKLIFE",
+      "name": "C'est La Vie",
+      "address": "0xbb3f2ba3ab521cb8651e0199adefcfc7bcc66038",
+      "chainKey": "base",
+      "chainId": 8453,
+      "chainName": "Base",
+      "apiPlatformId": "gemini-3.8-flash-flocklife",
+      "observedApiPlatformId": "gemini-3.8-flash-flocklife",
+      "projectUrl": "https://fomo.flock.io/token/0xbb3f2ba3ab521cb8651e0199adefcfc7bcc66038?chain=base",
+      "sourceUrl": "https://fomo.flock.io/api/launch?id=0xbb3f2ba3ab521cb8651e0199adefcfc7bcc66038&chain=base",
+      "underlyingModel": "Gemini 3.8 Flash"
+    },
+    {
+      "symbol": "CHEAP",
+      "name": "cheap",
+      "address": "0x5a9c1d061003a3191836c26affba87ad8833c9d7",
+      "chainKey": "base",
+      "chainId": 8453,
+      "chainName": "Base",
+      "apiPlatformId": "gemini-3.8-flash-cheap",
+      "observedApiPlatformId": "gemini-3.8-flash-cheap",
+      "projectUrl": "https://fomo.flock.io/token/0x5a9c1d061003a3191836c26affba87ad8833c9d7?chain=base",
+      "sourceUrl": "https://fomo.flock.io/api/launch?id=0x5a9c1d061003a3191836c26affba87ad8833c9d7&chain=base",
+      "underlyingModel": "Gemini 3.8 Flash"
+    },
+    {
+      "symbol": "ATTN",
+      "name": "Attention",
+      "address": "0x6b000c1e7c0249abd861cc3a6234e682c11ad30b",
+      "chainKey": "robinhood",
+      "chainId": 4663,
+      "chainName": "Robinhood Chain",
+      "apiPlatformId": "gemini-3.8-flash-attn",
+      "observedApiPlatformId": "gemini-3.8-flash-attn",
+      "projectUrl": "https://fomo.flock.io/token/0x6b000c1e7c0249abd861cc3a6234e682c11ad30b?chain=robinhood",
+      "sourceUrl": "https://fomo.flock.io/api/launch?id=0x6b000c1e7c0249abd861cc3a6234e682c11ad30b&chain=robinhood",
+      "underlyingModel": "Gemini 3.8 Flash"
+    },
+    {
+      "symbol": "GOOGLCAT",
+      "name": "Gemini-3.6-Flash CAT",
+      "address": "0xa1e5f5c0b523926fa16b47bfa9e7c7ee769a4785",
+      "chainKey": "robinhood",
+      "chainId": 4663,
+      "chainName": "Robinhood Chain",
+      "apiPlatformId": "gemini-3.8-flash-googlcat",
+      "observedApiPlatformId": "gemini-3.8-flash-googlcat",
+      "projectUrl": "https://fomo.flock.io/token/0xa1e5f5c0b523926fa16b47bfa9e7c7ee769a4785?chain=robinhood",
+      "sourceUrl": "https://fomo.flock.io/api/launch?id=0xa1e5f5c0b523926fa16b47bfa9e7c7ee769a4785&chain=robinhood",
+      "underlyingModel": "Gemini 3.8 Flash"
+    },
+    {
+      "symbol": "DSIKH",
+      "name": "DeepSikh",
+      "address": "0x758c3393554929449f5d5bb507737caa0bf07fb1",
+      "chainKey": "base",
+      "chainId": 8453,
+      "chainName": "Base",
+      "apiPlatformId": "deepseek-v4.1-flash-dsikh",
+      "observedApiPlatformId": "deepseek-v4-flash-dsikh",
+      "projectUrl": "https://fomo.flock.io/token/0x758c3393554929449f5d5bb507737caa0bf07fb1?chain=base",
+      "sourceUrl": "https://fomo.flock.io/api/launch?id=0x758c3393554929449f5d5bb507737caa0bf07fb1&chain=base",
+      "underlyingModel": "DeepSeek V4.1 Flash"
+    }
+  ]
+}

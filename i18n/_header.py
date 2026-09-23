@@ -292,6 +292,19 @@ PAGE_SPECS = {
         "back_guide": "/",
         "s1_ended": True,
     },
+    "s3": {
+        "page": "s3",
+        "htag": "FOMO · Season 3",
+        "nav_label": "Go to product platforms",
+        "s1_sub": "Ended · 5/22",
+        "s2_sub": "Mapped model usage · from 5/25",
+        "s2_pill": '<span class="pill">LIVE</span>',
+        "s2_href": "/season-2",
+        "s2_soon": False,
+        "s1_href": "/season-1",
+        "logo_guide": "/",
+        "back_guide": "/",
+    },
 }
 
 
@@ -310,6 +323,13 @@ def hreflang_block(page: str) -> str:
 <link rel="alternate" hreflang="ja" href="/season-1/ja">
 <link rel="alternate" hreflang="x-default" href="/season-1/en">
 """
+    if page == "s3":
+        return """<link rel="alternate" hreflang="zh-Hans" href="/season-3">
+<link rel="alternate" hreflang="en" href="/season-3/en">
+<link rel="alternate" hreflang="ko" href="/season-3/ko">
+<link rel="alternate" hreflang="ja" href="/season-3/ja">
+<link rel="alternate" hreflang="x-default" href="/season-3/en">
+"""
     return """<link rel="alternate" hreflang="zh-Hans" href="/season-2">
 <link rel="alternate" hreflang="en" href="/season-2/en">
 <link rel="alternate" hreflang="ko" href="/season-2/ko">
@@ -327,6 +347,13 @@ def _lang_hrefs(page: str) -> dict:
             "en": "/season-1/en",
             "ko": "/season-1/ko",
             "ja": "/season-1/ja",
+        }
+    if page == "s3":
+        return {
+            "zh": "/season-3",
+            "en": "/season-3/en",
+            "ko": "/season-3/ko",
+            "ja": "/season-3/ja",
         }
     return {
         "zh": "/season-2",
@@ -482,6 +509,12 @@ def patch_analytics(html: str) -> str:
 
 def patch_header_html(html: str, spec: dict, active_lang: str = "zh") -> str:
     page = spec["page"]
+    nav_label = {
+        "zh": "前往产品平台",
+        "en": "Go to product platforms",
+        "ko": "제품 플랫폼으로 이동",
+        "ja": "プロダクトプラットフォームへ",
+    }.get(active_lang, spec["nav_label"])
     html = _patch_header_css(html)
     if "hreflang=" not in html:
         insert = hreflang_block(page)
@@ -512,6 +545,11 @@ def patch_header_html(html: str, spec: dict, active_lang: str = "zh") -> str:
         '<link rel="alternate" hreflang="x-default" href="/season-2/en">',
         html,
     )
+    html = re.sub(
+        r'<link rel="alternate" hreflang="x-default" href="/season-3">',
+        '<link rel="alternate" hreflang="x-default" href="/season-3/en">',
+        html,
+    )
 
     ls = lang_switch_html(page, active_lang)
     lang_block = (
@@ -522,13 +560,36 @@ def patch_header_html(html: str, spec: dict, active_lang: str = "zh") -> str:
     else:
         html = re.sub(
             r'<nav class="hbar-actions"(?:\s+aria-label="[^"]*")?\s*>',
-            f'<nav class="hbar-actions" aria-label="{spec["nav_label"]}">\n      {ls}',
+            f'<nav class="hbar-actions" aria-label="{nav_label}">\n      {ls}',
             html,
             count=1,
         )
 
     html = _patch_lang_dd_js(html)
     html = _patch_season_dd_js(html)
+
+    season_menu_open = '<div class="hbar-dd-menu" id="seasonMenu" role="menu" aria-labelledby="seasonBtn">'
+    if season_menu_open in html and "hbar-dd-item-s3" not in html:
+        s3_copy = {
+            "zh": ("Season 3", "9/24 开始", "真实用量 · 质押 · gmFLOCK"),
+            "en": ("Season 3", "Starts 9/24", "API usage · staking · gmFLOCK"),
+            "ko": ("시즌 3", "9/24 시작", "API 사용 · 스테이킹 · gmFLOCK"),
+            "ja": ("シーズン3", "9/24開始", "API利用 · ステーキング · gmFLOCK"),
+        }
+        title, starts, subtitle = s3_copy[active_lang]
+        if page == "s3":
+            link_attrs = 'class="hbar-dd-item hbar-dd-item-s3 hbar-dd-item-current" href="#" role="menuitem" aria-current="page"'
+        else:
+            link_attrs = f'class="hbar-dd-item hbar-dd-item-s3" href="{season_path("3", active_lang)}" role="menuitem"'
+        s3_item = (
+            f'<a {link_attrs}>'
+            '<span class="hbar-dd-tag">S3</span>'
+            '<span class="hbar-dd-body">'
+            f'<span class="hbar-dd-title">{title} <span class="pill soon">{starts}</span></span>'
+            f'<span class="hbar-dd-sub">{subtitle}</span>'
+            '</span></a>'
+        )
+        html = html.replace(season_menu_open, season_menu_open + "\n        " + s3_item, 1)
 
     s2_href = spec.get("s2_href", "#")
     if active_lang != "zh" and s2_href and s2_href != "#":
@@ -556,14 +617,22 @@ def patch_header_html(html: str, spec: dict, active_lang: str = "zh") -> str:
         s1_href = season_path("1", active_lang)
     html = html.replace('href="fomo-season-1.html"', f'href="{s1_href}"')
 
-    if spec.get("s1_ended"):
-        html = html.replace(
-            '<span class="hbar-dd-title">Season 1 <span class="pill">LIVE</span></span>',
-            '<span class="hbar-dd-title">Season 1 <span class="pill ended">ENDED</span></span>',
-        )
-        html = html.replace(
-            '<span class="hbar-dd-sub">真实使用 · Season 1 Rewards</span>',
-            f'<span class="hbar-dd-sub">{spec["s1_sub"]}</span>',
+    # Apply after translation; older sources use both spaces and NBSPs.
+    ended = {"zh": "已结束", "en": "Ended", "ko": "종료", "ja": "終了"}[active_lang]
+    html = re.sub(
+        r'(<span class="hbar-dd-title">Season\s+[12]\s+)<span class="pill[^\"]*">[^<]*</span>',
+        lambda match: match[1] + f'<span class="pill ended">{ended}</span>',
+        html,
+    )
+    if '.hbar-dd-title .pill.ended{' not in html:
+        html = html.replace('</style>',
+            '  .hbar-dd-title .pill.ended{background:#ffffff0f;color:#bfc5cf;border-color:#ffffff30;}\n</style>', 1)
+    if page in ("s1", "s2"):
+        season = "1" if page == "s1" else "2"
+        html = re.sub(
+            rf'(<div class="sec-num" data-anim>)(?:09 — )?SEASON {season} · [^<]*(</div>)',
+            lambda match: match[1] + f'SEASON {season} · {ended}' + match[2],
+            html, count=1,
         )
 
     if "logo_guide" in spec:

@@ -915,6 +915,7 @@
         Season<i class="chev" data-lucide="chevron-down"></i>
       </button>
       <div class="hbar-dd-menu" id="seasonMenu" role="menu" aria-labelledby="seasonBtn">
+        <a class="hbar-dd-item hbar-dd-item-s3" href="/season-3" role="menuitem"><span class="hbar-dd-tag">S3</span><span class="hbar-dd-body"><span class="hbar-dd-title">Season 3 <span class="pill soon">9/24 开始</span></span><span class="hbar-dd-sub">真实用量 · 质押 · gmFLOCK</span></span></a>
         <a class="hbar-dd-item" href="/season-1" role="menuitem">
           <span class="hbar-dd-tag">S1</span>
           <span class="hbar-dd-body">
@@ -925,7 +926,7 @@
         <a class="hbar-dd-item hbar-dd-item-current" href="#" role="menuitem" aria-current="page">
           <span class="hbar-dd-tag">S2</span>
           <span class="hbar-dd-body">
-            <span class="hbar-dd-title">Season 2 <span class="pill">LIVE</span></span>
+            <span class="hbar-dd-title">Season 2 <span class="pill ended">已结束</span></span>
             <span class="hbar-dd-sub">mapped model 用量 · 5/25 开始</span>
           </span>
         </a>
@@ -953,7 +954,7 @@
 <!-- ============ S2 · OVERVIEW ============ -->
 <section id="season2">
   <div class="wrap">
-    <div class="sec-num" data-anim>SEASON 2 · 真实使用赚奖励</div>
+    <div class="sec-num" data-anim>SEASON 2 · 已结束</div>
     <h2 data-anim>FOMO Reward Season 2 · <span class="accent">用「指定模型名」<span class="nb">调用 AI</span>，就能赚奖励</span></h2>
     <p class="sec-intro" data-anim>
       Season 1 已于 <b style="color:#fff;font-weight:500">5/22</b> 收官。Season 2 <b style="color:#fff;font-weight:500">周一（5/25）</b>正式开始，但<b style="color:#fff;font-weight:500">用量从今天（5/22）就开始计入</b>。规则只有一条：<span class="nb">调用 AI</span> 时，模型名要填下表右列的<b style="color:#fff;font-weight:500">「指定模型名」（apiPlatformId，例 gemini-3.5-flash-flocklife）</b>，用量才计入奖励；用别的名字这季不算。
@@ -1170,35 +1171,20 @@
     });
   });
 
-  // Header — Season dropdown (click toggle + desktop hover + outside click + esc + soon-item guard)
+  // Header — Season dropdown (click toggle + outside click + esc + soon-item guard)
   (function(){
     var dd  = document.getElementById('seasonDD');
     var btn = document.getElementById('seasonBtn');
     if(!dd || !btn) return;
     var langDD = document.getElementById('langDD');
     var langBtn = document.getElementById('langBtn');
-    var hoverCapable = window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-    var hoverCloseTimer = null;
-    var HOVER_CLOSE_DELAY = 100;
     function closeLang(){
       if(!langDD || !langBtn) return;
       langDD.dataset.open='false';
       langBtn.setAttribute('aria-expanded','false');
     }
     function close(){ dd.dataset.open='false'; btn.setAttribute('aria-expanded','false'); }
-    function open(){
-      if(hoverCloseTimer){ window.clearTimeout(hoverCloseTimer); hoverCloseTimer = null; }
-      closeLang();
-      dd.dataset.open='true';
-      btn.setAttribute('aria-expanded','true');
-    }
-    function scheduleClose(){
-      if(hoverCloseTimer) window.clearTimeout(hoverCloseTimer);
-      hoverCloseTimer = window.setTimeout(function(){
-        close();
-        hoverCloseTimer = null;
-      }, HOVER_CLOSE_DELAY);
-    }
+    function open(){ closeLang(); dd.dataset.open='true'; btn.setAttribute('aria-expanded','true'); }
     btn.addEventListener('click', function(e){
       e.stopPropagation();
       (dd.dataset.open==='true') ? close() : open();
@@ -1215,19 +1201,10 @@
     dd.querySelectorAll('.hbar-dd-item-soon').forEach(function(a){
       a.addEventListener('click', function(e){ e.preventDefault(); });
     });
-    if(hoverCapable){
-      dd.addEventListener('mouseenter', function(){
-        if(hoverCloseTimer){ window.clearTimeout(hoverCloseTimer); hoverCloseTimer = null; }
-        open();
-      });
-      dd.addEventListener('mouseleave', function(){
-        scheduleClose();
-      });
-    }
   })();
 
 
-  // Header — Language dropdown (click toggle + desktop hover; closes Season menu)
+  // Header — Language dropdown (click toggle; closes Season menu)
   (function(){
     var dd  = document.getElementById('langDD');
     var btn = document.getElementById('langBtn');
@@ -1235,9 +1212,6 @@
     var season = document.getElementById('seasonDD');
     var seasonBtn = document.getElementById('seasonBtn');
     if(!dd || !btn) return;
-    var hoverCapable = window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-    var hoverCloseTimer = null;
-    var HOVER_CLOSE_DELAY = 100;
     var ignoreOutside = false;
     function closeSeason(){
       if(!season || !seasonBtn) return;
@@ -1245,19 +1219,7 @@
       seasonBtn.setAttribute('aria-expanded','false');
     }
     function close(){ dd.dataset.open='false'; btn.setAttribute('aria-expanded','false'); }
-    function open(){
-      if(hoverCloseTimer){ window.clearTimeout(hoverCloseTimer); hoverCloseTimer = null; }
-      closeSeason();
-      dd.dataset.open='true';
-      btn.setAttribute('aria-expanded','true');
-    }
-    function scheduleClose(){
-      if(hoverCloseTimer) window.clearTimeout(hoverCloseTimer);
-      hoverCloseTimer = window.setTimeout(function(){
-        close();
-        hoverCloseTimer = null;
-      }, HOVER_CLOSE_DELAY);
-    }
+    function open(){ closeSeason(); dd.dataset.open='true'; btn.setAttribute('aria-expanded','true'); }
     btn.addEventListener('click', function(e){
       e.stopPropagation();
       ignoreOutside = true;
@@ -1284,15 +1246,6 @@
     if(season){
       season.addEventListener('click', function(e){
         if(season.dataset.open==='true' && !dd.contains(e.target)) close();
-      });
-    }
-    if(hoverCapable){
-      dd.addEventListener('mouseenter', function(){
-        if(hoverCloseTimer){ window.clearTimeout(hoverCloseTimer); hoverCloseTimer = null; }
-        open();
-      });
-      dd.addEventListener('mouseleave', function(){
-        scheduleClose();
       });
     }
   })();

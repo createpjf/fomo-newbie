@@ -850,6 +850,7 @@
   .page-top{padding-top:12px;padding-bottom:8px;}
 
 
+  .hbar-dd-title .pill.ended{background:#ffffff0f;color:#bfc5cf;border-color:#ffffff30;}
 </style>
 </head>
 <body>
@@ -879,17 +880,18 @@
         Season<i class="chev" data-lucide="chevron-down"></i>
       </button>
       <div class="hbar-dd-menu" id="seasonMenu" role="menu" aria-labelledby="seasonBtn">
+        <a class="hbar-dd-item hbar-dd-item-s3" href="/season-3/ja" role="menuitem"><span class="hbar-dd-tag">S3</span><span class="hbar-dd-body"><span class="hbar-dd-title">シーズン3 <span class="pill soon">9/24開始</span></span><span class="hbar-dd-sub">API利用 · ステーキング · gmFLOCK</span></span></a>
         <a class="hbar-dd-item hbar-dd-item-current" href="#" role="menuitem" aria-current="page">
           <span class="hbar-dd-tag">S1</span>
           <span class="hbar-dd-body">
-            <span class="hbar-dd-title">Season 1 <span class="pill">LIVE</span></span>
+            <span class="hbar-dd-title">Season 1 <span class="pill ended">終了</span></span>
             <span class="hbar-dd-sub">実利用 → 報酬フライホイール</span>
           </span>
         </a>
         <a class="hbar-dd-item" href="/season-2/ja" role="menuitem">
           <span class="hbar-dd-tag dim">S2</span>
           <span class="hbar-dd-body">
-            <span class="hbar-dd-title">Season 2 <span class="pill">LIVE</span></span>
+            <span class="hbar-dd-title">Season 2 <span class="pill ended">終了</span></span>
             <span class="hbar-dd-sub">Mapped model usage · from 5/25</span>
           </span>
         </a>
@@ -916,7 +918,7 @@
 <!-- ============ 9. SEASON 1 · FOMO Reward Season ============ -->
 <section id="season1">
   <div class="wrap">
-    <div class="sec-num" data-anim>09 — SEASON 1 · LIVE</div>
+    <div class="sec-num" data-anim>SEASON 1 · 終了</div>
     <h2 data-anim>FOMO Reward Season 1 · <span class="accent">実利用に基づく報酬</span></h2>
     <p class="sec-intro" data-anim>
       一言で言うと：<b style="color:#fff;font-weight:500">AIを使えば報酬がある</b>。
@@ -1186,35 +1188,20 @@
 <script>
   if(window.lucide) lucide.createIcons();
 
-  // Header — Season dropdown (click toggle + desktop hover + outside click + esc + soon-item guard)
+  // Header — Season dropdown (click toggle + outside click + esc + soon-item guard)
   (function(){
     var dd  = document.getElementById('seasonDD');
     var btn = document.getElementById('seasonBtn');
     if(!dd || !btn) return;
     var langDD = document.getElementById('langDD');
     var langBtn = document.getElementById('langBtn');
-    var hoverCapable = window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-    var hoverCloseTimer = null;
-    var HOVER_CLOSE_DELAY = 100;
     function closeLang(){
       if(!langDD || !langBtn) return;
       langDD.dataset.open='false';
       langBtn.setAttribute('aria-expanded','false');
     }
     function close(){ dd.dataset.open='false'; btn.setAttribute('aria-expanded','false'); }
-    function open(){
-      if(hoverCloseTimer){ window.clearTimeout(hoverCloseTimer); hoverCloseTimer = null; }
-      closeLang();
-      dd.dataset.open='true';
-      btn.setAttribute('aria-expanded','true');
-    }
-    function scheduleClose(){
-      if(hoverCloseTimer) window.clearTimeout(hoverCloseTimer);
-      hoverCloseTimer = window.setTimeout(function(){
-        close();
-        hoverCloseTimer = null;
-      }, HOVER_CLOSE_DELAY);
-    }
+    function open(){ closeLang(); dd.dataset.open='true'; btn.setAttribute('aria-expanded','true'); }
     btn.addEventListener('click', function(e){
       e.stopPropagation();
       (dd.dataset.open==='true') ? close() : open();
@@ -1231,19 +1218,10 @@
     dd.querySelectorAll('.hbar-dd-item-soon').forEach(function(a){
       a.addEventListener('click', function(e){ e.preventDefault(); });
     });
-    if(hoverCapable){
-      dd.addEventListener('mouseenter', function(){
-        if(hoverCloseTimer){ window.clearTimeout(hoverCloseTimer); hoverCloseTimer = null; }
-        open();
-      });
-      dd.addEventListener('mouseleave', function(){
-        scheduleClose();
-      });
-    }
   })();
 
 
-  // Header — Language dropdown (click toggle + desktop hover; closes Season menu)
+  // Header — Language dropdown (click toggle; closes Season menu)
   (function(){
     var dd  = document.getElementById('langDD');
     var btn = document.getElementById('langBtn');
@@ -1251,9 +1229,6 @@
     var season = document.getElementById('seasonDD');
     var seasonBtn = document.getElementById('seasonBtn');
     if(!dd || !btn) return;
-    var hoverCapable = window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-    var hoverCloseTimer = null;
-    var HOVER_CLOSE_DELAY = 100;
     var ignoreOutside = false;
     function closeSeason(){
       if(!season || !seasonBtn) return;
@@ -1261,19 +1236,7 @@
       seasonBtn.setAttribute('aria-expanded','false');
     }
     function close(){ dd.dataset.open='false'; btn.setAttribute('aria-expanded','false'); }
-    function open(){
-      if(hoverCloseTimer){ window.clearTimeout(hoverCloseTimer); hoverCloseTimer = null; }
-      closeSeason();
-      dd.dataset.open='true';
-      btn.setAttribute('aria-expanded','true');
-    }
-    function scheduleClose(){
-      if(hoverCloseTimer) window.clearTimeout(hoverCloseTimer);
-      hoverCloseTimer = window.setTimeout(function(){
-        close();
-        hoverCloseTimer = null;
-      }, HOVER_CLOSE_DELAY);
-    }
+    function open(){ closeSeason(); dd.dataset.open='true'; btn.setAttribute('aria-expanded','true'); }
     btn.addEventListener('click', function(e){
       e.stopPropagation();
       ignoreOutside = true;
@@ -1300,15 +1263,6 @@
     if(season){
       season.addEventListener('click', function(e){
         if(season.dataset.open==='true' && !dd.contains(e.target)) close();
-      });
-    }
-    if(hoverCapable){
-      dd.addEventListener('mouseenter', function(){
-        if(hoverCloseTimer){ window.clearTimeout(hoverCloseTimer); hoverCloseTimer = null; }
-        open();
-      });
-      dd.addEventListener('mouseleave', function(){
-        scheduleClose();
       });
     }
   })();

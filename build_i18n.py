@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Build FOMO handbook + S1 localized HTML and publish clean URL layout."""
+"""Build localized handbook and season pages for the clean URL layout."""
 
 import importlib.util
 import os
@@ -34,6 +34,13 @@ S2_LAYOUT = {
     "en": ("season-2/en/index.html", "/season-2/en"),
     "ko": ("season-2/ko/index.html", "/season-2/ko"),
     "ja": ("season-2/ja/index.html", "/season-2/ja"),
+}
+
+S3_LAYOUT = {
+    "zh": ("season-3/index.html", "/season-3"),
+    "en": ("season-3/en/index.html", "/season-3/en"),
+    "ko": ("season-3/ko/index.html", "/season-3/ko"),
+    "ja": ("season-3/ja/index.html", "/season-3/ja"),
 }
 
 
@@ -90,7 +97,7 @@ def publish_from_build(staging: str, layout_map: dict, lang: str):
 def clean_legacy_deploy_files():
     import glob as g
 
-    for pat in ("fomo-newbie-guide_May*.html", "fomo-season-1*.html", "fomo-season-2*.html"):
+    for pat in ("fomo-newbie-guide_May*.html", "fomo-season-1*.html", "fomo-season-2*.html", "fomo-season-3*.html"):
         for path in g.glob(os.path.join(ROOT, pat)):
             os.remove(path)
             print("removed legacy", os.path.basename(path))
@@ -202,6 +209,20 @@ def main():
     publish_s2("en", S2_EN_EXTRA)
     publish_s2("ko", S2_KO_EXTRA)
     publish_s2("ja", S2_JA_EXTRA)
+
+    print("Building season-3 locales...")
+    for lang in ("zh", "en", "ko", "ja"):
+        src_name = "season-3.html" if lang == "zh" else f"season-3-{lang}.html"
+        rel = S3_LAYOUT[lang][0]
+        with open(src_name, encoding="utf-8") as f:
+            html = f.read()
+        html = patch_header_html(html, PAGE_SPECS["s3"], lang)
+        html = fix_absolute_assets(html, rel)
+        dst = os.path.join(ROOT, rel)
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        with open(dst, "w", encoding="utf-8") as f:
+            f.write(html)
+        print(f"  wrote {rel}")
 
     clean_legacy_deploy_files()
     if os.path.isdir(BUILD_DIR):

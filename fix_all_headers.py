@@ -25,6 +25,10 @@ PAGES = [
     ("season-2/en/index.html", "s2", "en"),
     ("season-2/ko/index.html", "s2", "ko"),
     ("season-2/ja/index.html", "s2", "ja"),
+    ("season-3/index.html", "s3", "zh"),
+    ("season-3/en/index.html", "s3", "en"),
+    ("season-3/ko/index.html", "s3", "ko"),
+    ("season-3/ja/index.html", "s3", "ja"),
 ]
 
 
