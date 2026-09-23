@@ -1,0 +1,9 @@
+# FOMO S3 social cover
+
+`fomo-s3-share-v1.jpg` is the S3 Open Graph / X cover, exported as a 1200 × 630 JPEG. All four S3 locales use the same language-neutral season name and English guide artwork, with localized metadata and image alt text. Source pages contain absolute production URLs.
+
+Generated with the built-in imagegen tool on 2026-09-23. No specific model-version override was available in this tool. The original generated image was exported to the social-card format without changing its composition.
+
+## Generation prompt
+
+Use case: ads-marketing. Generate one polished landscape social sharing cover for the FOMO Season 3 participation guide, aspect ratio 1.91:1 (ideally 1536x804 or 1200x630). Main exact text: "FOMO S3" extremely large, bold, clean white sans serif, optically aligned on the left. Smaller subtitle exact text: "PARTICIPATION GUIDE". Small supporting line: "API usage · MT staking · gmFLOCK". Bottom small date: "STARTS SEPTEMBER 24, 2026". Small brand wordmark text "FLock.io" at top left. Background nearly black #080A0E. Saturated FLock blue #3773FF is the only accent hue; avoid pale blue, cyan, purple, gold. Right side a refined studio-lit 3D sculptural composition: three low circular blue token stacks connected by a clean rising curved line, representing usage and staking reward mechanics, no numbers or claimed returns. Matte metallic blue surfaces, subtle light, restrained soft shadows. Elegant technical financial editorial style, quiet negative space, strong typography dominant, visually simple at thumbnail size. No app UI, no bordered cards, no decorative particle noise, no invented token logos, no extra words. Keep all type in central safe area with at least 8% margins, right sculpture fully framed. Landscape cover ready for Open Graph and an X social post.
