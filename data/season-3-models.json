@@ -1,7 +1,7 @@
 {
   "checkedOn": "2026-09-24",
-  "idSource": "User-provided FOMO Marketplace DEX and Deluthium detail-page audit dated 2026-09-24; not a new independent live audit.",
-  "note": "16 issued tokens; FAILED entries excluded. DSIKH uses the observed platform ID at user direction, despite its Model ID version mismatch. Pending is the original API ID field value and is not callable. Token presence does not establish S3 reward eligibility. Identify tokens by chain plus address.",
+  "idSource": "User-provided FOMO Marketplace DEX detail-page audit dated 2026-09-24; not a new independent live audit.",
+  "note": "11 issued DEX tokens. Token presence does not establish S3 reward eligibility. Identify tokens by chain plus address.",
   "models": [
     {
       "symbol": "ATTN",
@@ -156,76 +156,6 @@
       "apiPlatformId": "deepseek-v4-pro-deepsuck",
       "observedApiPlatformId": "deepseek-v4-pro-deepsuck",
       "projectUrl": "https://fomo.flock.io/token/0xbcae4c4db4c5e6518d09c858d74116ae8d82c517?chain=base"
-    },
-    {
-      "symbol": "DSIKH",
-      "name": "DeepSikh",
-      "category": "Deluthium",
-      "address": "0x758c3393554929449f5d5bb507737caa0bf07fb1",
-      "chainKey": "base",
-      "chainName": "Base",
-      "chainId": 8453,
-      "underlyingModel": "DeepSeek-V3.2",
-      "modelId": "DeepSeek-V3.2",
-      "apiPlatformId": "deepseek-v4-flash-dsikh",
-      "observedApiPlatformId": "deepseek-v4-flash-dsikh",
-      "projectUrl": "https://fomo.flock.io/token/0x758c3393554929449f5d5bb507737caa0bf07fb1?chain=base"
-    },
-    {
-      "symbol": "CODING",
-      "name": "Qwen3-30B-A3B-Coder",
-      "category": "Deluthium",
-      "address": "0xe2d43c414fd0f787fb7665ffc7d194e75860d333",
-      "chainKey": "base",
-      "chainName": "Base",
-      "chainId": 8453,
-      "underlyingModel": "Qwen3-30B-A3B-Instruct",
-      "modelId": "Qwen3-30B-A3B-Instruct",
-      "apiPlatformId": "Pending",
-      "observedApiPlatformId": "Pending",
-      "projectUrl": "https://fomo.flock.io/token/0xe2d43c414fd0f787fb7665ffc7d194e75860d333?chain=base"
-    },
-    {
-      "symbol": "QMXAI",
-      "name": "QMXAI",
-      "category": "Deluthium",
-      "address": "0x9f7f644ad057ff20d2da16e0d0d039ea80f62b24",
-      "chainKey": "base",
-      "chainName": "Base",
-      "chainId": 8453,
-      "underlyingModel": "Qwen3-30B-A3B-Instruct",
-      "modelId": "Qwen3-30B-A3B-Instruct",
-      "apiPlatformId": "Pending",
-      "observedApiPlatformId": "Pending",
-      "projectUrl": "https://fomo.flock.io/token/0x9f7f644ad057ff20d2da16e0d0d039ea80f62b24?chain=base"
-    },
-    {
-      "symbol": "QMINI",
-      "name": "QWEN3 MINI ManCang",
-      "category": "Deluthium",
-      "address": "0xc86c0e46dede740f9b6784dcfa3a1b805dd83b1b",
-      "chainKey": "base",
-      "chainName": "Base",
-      "chainId": 8453,
-      "underlyingModel": "Qwen3-30B-A3B-Instruct",
-      "modelId": "Qwen3-30B-A3B-Instruct",
-      "apiPlatformId": "Pending",
-      "observedApiPlatformId": "Pending",
-      "projectUrl": "https://fomo.flock.io/token/0xc86c0e46dede740f9b6784dcfa3a1b805dd83b1b?chain=base"
-    },
-    {
-      "symbol": "QWFIN",
-      "name": "Qwen3-235b-QWFIN-model",
-      "category": "Deluthium",
-      "address": "0x9041dec6b29913085aaa3f34edea824126f37e9d",
-      "chainKey": "base",
-      "chainName": "Base",
-      "chainId": 8453,
-      "underlyingModel": "Qwen3-235B-A22B-Thinking",
-      "modelId": "Qwen3-235B-A22B-Thinking",
-      "apiPlatformId": "Pending",
-      "observedApiPlatformId": "Pending",
-      "projectUrl": "https://fomo.flock.io/token/0x9041dec6b29913085aaa3f34edea824126f37e9d?chain=base"
     }
   ]
 }
