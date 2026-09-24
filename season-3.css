@@ -136,6 +136,11 @@ h3 { font-size: 1.0625rem; font-weight: 600; line-height: 1.5; text-wrap: pretty
 .mapping-pending { margin-block-end: .5rem; color: #d7c59b; font-size: .6875rem; line-height: 1.6; }
 .mapping-mobile-label { display: none; }
 .model-ids-body > .mapping-note { margin: .75rem 0 0; font-size: .75rem; }
+.model-ids-body > .mapping-snapshot { font-size: .75rem; }
+.mapping-group-title { margin: 1.5rem 0 .5rem; font-size: .875rem; }
+.mapping-group-title span { color: var(--muted); font-weight: 400; }
+.mapping-field-note { margin: .4rem 0 0; padding-inline-start: .8em; text-indent: -.8em; color: #d7c59b; font-size: .6875rem; line-height: 1.6; }
+.mt-base-model span { min-width: 0; overflow-wrap: anywhere; }
 .copy-id { position: relative; display: inline-grid; grid-template-columns: 14px minmax(0,1fr); align-items: center; gap: .5rem; max-width: 100%; min-height: 32px; padding: .2rem 0; border: 0; border-radius: .25rem; background: transparent; color: #eef2fa; text-align: start; }
 .copy-id:hover { background: #3773ff14; color: var(--blue); }
 .copy-id:disabled { cursor: text; background: transparent; color: inherit; }

@@ -10,3 +10,7 @@ Both assets are shared by the Three.js coin-top textures and the static fallback
 - `flock-symbol.svg`: official standalone FLock symbol reused from the Season 2 footer for FOMO project links.
 
 - `fomo.svg`: official FOMO favicon from https://fomo.flock.io/favicon.svg, used for the project-entry links.
+
+- `kimi.svg`: Moonshot AI / Kimi symbol reused from the existing Season 2 table, in white.
+- `bnb.svg`: BNB Chain logo from https://fomo.flock.io/assets/bnb-logo.svg.
+- `qwen.png`: favicon linked by the official https://qwen.ai homepage, from https://img.alicdn.com/imgextra/i4/O1CN01OXv3EM1FN8t9W4P79_!!6000000000474-2-tps-80-80.png.
