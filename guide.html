@@ -35,30 +35,10 @@
 <script>document.addEventListener('DOMContentLoaded',function(){if(window.lucide)lucide.createIcons();});</script>
 <style>
 /* ===== Alibaba PuHuiTi 3.0 — subsetted to this document's CJK glyphs (F-P0-4) ===== */
-    @font-face{
-    font-family:'Alibaba PuHuiTi 3.0';
-    src:url(/fonts/AlibabaPuHuiTi-400.woff2) format('woff2');
-    font-weight:400;font-style:normal;font-display:swap;
-    unicode-range:U+3000-303F,U+4E00-9FFF,U+FF00-FFEF,U+3400-4DBF;
-  }
-  @font-face{
-    font-family:'Alibaba PuHuiTi 3.0';
-    src:url(/fonts/AlibabaPuHuiTi-500.woff2) format('woff2');
-    font-weight:500;font-style:normal;font-display:swap;
-    unicode-range:U+3000-303F,U+4E00-9FFF,U+FF00-FFEF,U+3400-4DBF;
-  }
-  @font-face{
-    font-family:'Alibaba PuHuiTi 3.0';
-    src:url(/fonts/AlibabaPuHuiTi-600.woff2) format('woff2');
-    font-weight:600;font-style:normal;font-display:swap;
-    unicode-range:U+3000-303F,U+4E00-9FFF,U+FF00-FFEF,U+3400-4DBF;
-  }
-  @font-face{
-    font-family:'Alibaba PuHuiTi 3.0';
-    src:url(/fonts/AlibabaPuHuiTi-700.woff2) format('woff2');
-    font-weight:700;font-style:normal;font-display:swap;
-    unicode-range:U+3000-303F,U+4E00-9FFF,U+FF00-FFEF,U+3400-4DBF;
-  }
+
+
+
+
 
   :root{
     /* Primary palette — Iron Rules §1–3 */
@@ -95,7 +75,7 @@
 
   /* ---------- entrance animation (P1-6: token-driven, single primitive) ---------- */
   [data-anim]{
-    opacity:0; transform:translateY(16px);
+    opacity:1; transform:none;
     transition:opacity var(--f-dur-major) var(--f-ease-out),
                transform var(--f-dur-major) var(--f-ease-out);
   }
@@ -109,131 +89,6 @@
   a:focus-visible,button:focus-visible{
     outline:2px solid var(--blue); outline-offset:3px; border-radius:4px;
     transition:none; /* --f-dur-instant */
-  }
-
-  /* ---------- header ---------- */
-  header{
-    border-bottom:1px solid var(--border); position:sticky; top:0; z-index:50;
-    background:rgba(0,0,0,0.85); backdrop-filter:blur(12px);
-    padding-top:env(safe-area-inset-top,0px);
-  }
-  .hbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 28px;max-width:1080px;margin:0 auto;}
-  .hbar-left{display:flex;align-items:center;gap:16px;min-width:0;}
-  .hbar svg.logo{height:24px;width:auto;display:block;flex-shrink:0;}
-  .htag{font-family:var(--mono);font-size:11px;color:var(--blue);letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap;}
-  .hbar-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
-  .hbar-left .hbar-dd#seasonDD,.hbar-actions .lang-dd{flex-shrink:0;}
-  @media (max-width:1100px){.htag{display:none;}}
-  .hbar-btn{
-    display:inline-flex;align-items:center;gap:6px;
-    font-size:13px;font-weight:500;color:#fff;text-decoration:none;
-    padding:8px 14px;border-radius:999px;
-    border:1px solid rgba(255,255,255,0.5);background:transparent;
-    white-space:nowrap;transition:transform 0.15s,border-color 0.15s,background 0.15s;
-  }
-  .hbar-btn svg{width:14px;height:14px;}
-  .hbar-btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.06);}
-  .hbar-btn-primary{background:var(--blue);border-color:var(--blue);}
-  .hbar-btn-primary:hover{background:var(--blue);border-color:var(--blue);filter:brightness(1.08);}
-  /* ---------- header season dropdown ---------- */
-  .hbar-dd{position:relative;}
-  .hbar-dd-btn{cursor:pointer;font-family:inherit;}
-  .hbar-dd-btn .chev{transition:transform 0.18s ease;}
-  .hbar-dd[data-open="true"] .hbar-dd-btn{border-color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.06);}
-  .hbar-dd[data-open="true"] .hbar-dd-btn .chev{transform:rotate(180deg);}
-  .hbar-dd-menu{
-    position:absolute; top:calc(100% + 10px); left:0; min-width:280px;
-    background:rgba(10,10,10,0.96); backdrop-filter:blur(14px);
-    border:1px solid var(--border); border-radius:14px;
-    padding:8px; box-shadow:0 18px 40px -12px rgba(0,0,0,0.6),0 0 0 1px rgba(55,115,255,0.04);
-    opacity:0; pointer-events:none; transform:translateY(-6px) scale(0.98);
-    transition:opacity 0.16s ease, transform 0.16s ease;
-    z-index:60;
-  }
-  .hbar-dd[data-open="true"] .hbar-dd-menu{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);}
-  @media (hover:hover) and (pointer:fine){
-    .hbar-dd:focus-within .hbar-dd-menu{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);}
-    .hbar-dd:hover .hbar-dd-menu{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);}
-    .hbar-dd:hover .hbar-dd-btn{border-color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.06);}
-    .hbar-dd:hover .hbar-dd-btn .chev{transform:rotate(180deg);}
-  }
-  .hbar-dd-item{
-    display:flex; align-items:flex-start; gap:12px;
-    padding:11px 12px; border-radius:10px; text-decoration:none;
-    transition:background 0.14s ease;
-  }
-  .hbar-dd-item:hover{background:rgba(55,115,255,0.10);}
-  .hbar-dd-item + .hbar-dd-item{margin-top:2px;}
-  .hbar-dd-tag{
-    flex:0 0 38px; height:38px; border-radius:9px;
-    display:flex; align-items:center; justify-content:center;
-    font-family:var(--mono); font-size:12px; font-weight:600;
-    letter-spacing:0.04em;
-    background:rgba(55,115,255,0.15); color:var(--blue);
-    border:1px solid var(--border-blue);
-  }
-  .hbar-dd-tag.dim{background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.45);border-color:var(--border);}
-  .hbar-dd-body{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1;}
-  .hbar-dd-title{font-size:13.5px;font-weight:500;color:#fff;display:flex;align-items:center;gap:8px;}
-  .hbar-dd-title .pill{
-    font-family:var(--mono); font-size:9.5px; font-weight:600;
-    padding:2px 7px; border-radius:999px;
-    background:rgba(34,180,115,0.18); color:#22B473; letter-spacing:0.04em;
-    border:1px solid rgba(34,180,115,0.35);
-  }
-  .hbar-dd-title .pill.soon{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.55);border-color:var(--border);}
-  .hbar-dd-sub{font-size:11.5px;color:rgba(255,255,255,0.55);font-family:var(--mono);letter-spacing:0.02em;}
-  .hbar-dd-item-soon{cursor:not-allowed;opacity:0.78;}
-  .hbar-dd-item-soon:hover{background:transparent;}
-  .hbar-dd-item-soon .hbar-dd-title{color:rgba(255,255,255,0.6);}
-  @media (max-width:720px){
-    header,.hbar,.hbar-actions{overflow:visible;}
-    .hbar{
-      display:grid;
-      grid-template-columns:minmax(0,1fr) auto;
-      grid-template-rows:auto auto;
-      column-gap:12px;row-gap:10px;
-      align-items:center;
-      padding:12px max(16px,env(safe-area-inset-left)) 12px max(16px,env(safe-area-inset-right));
-    }
-    .hbar-left{display:contents;}
-    .htag{display:none;}
-    .hbar svg.logo{grid-column:1;grid-row:1;height:22px;max-width:min(140px,42vw);}
-    .hbar-left .hbar-dd#seasonDD{grid-column:2;grid-row:1;justify-self:end;}
-
-    .hbar-actions{
-      grid-column:1/-1;grid-row:2;
-      display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;
-      width:100%;margin:0;
-      align-items:center;
-    }
-    .lang-dd{justify-self:start;margin-right:0;position:relative;z-index:5;}
-    .lang-dd[data-open="true"]{z-index:120;}
-    .hbar-actions{position:relative;z-index:1;}
-    .hbar-actions .hbar-btn{
-      justify-content:center;min-height:44px;
-      font-size:12px;padding:10px 8px;
-    }
-    .hbar-left .hbar-dd#seasonDD .hbar-dd-menu{
-      right:0;left:auto;min-width:min(280px,calc(100vw - 32px));z-index:60;
-    }
-    .lang-dd .hbar-dd-menu{
-      left:0;right:auto;min-width:148px;max-width:min(220px,calc(100vw - 24px));z-index:80;
-    }
-  }
-  @media (min-width:390px) and (max-width:720px){
-    .wrap{padding-left:max(18px,env(safe-area-inset-left));padding-right:max(18px,env(safe-area-inset-right));}
-    .hero{padding:60px 0 52px;}
-    h1{font-size:clamp(30px,7.2vw,40px);line-height:1.12;margin-bottom:18px;}
-    .lede{font-size:17px;line-height:1.65;}
-    h2{font-size:clamp(24px,5.8vw,30px);}
-    .hbar-actions{gap:10px;}
-    .hbar-actions .hbar-btn{font-size:12.5px;padding:10px 10px;}
-  }
-  @media (min-width:600px) and (max-width:720px){
-    .hbar{column-gap:16px;row-gap:12px;}
-    .hbar-actions{gap:12px;}
-    .hbar svg.logo{max-width:min(160px,36vw);}
   }
 
   /* ---------- hero ---------- */
@@ -386,10 +241,10 @@
 
   /* ---------- bonding curve (§05.5) ---------- */
   /* ===== Alibaba PuHuiTi 3.0 — subsetted to this document's CJK glyphs (F-P0-4) ===== */
-    @font-face{font-family:'Alibaba PuHuiTi 3.0';src:url(/fonts/AlibabaPuHuiTi-400-subset.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap;unicode-range:U+3000-303F,U+4E00-9FFF,U+FF00-FFEF,U+3400-4DBF;}
-  @font-face{font-family:'Alibaba PuHuiTi 3.0';src:url(/fonts/AlibabaPuHuiTi-500-subset.woff2) format('woff2');font-weight:500;font-style:normal;font-display:swap;unicode-range:U+3000-303F,U+4E00-9FFF,U+FF00-FFEF,U+3400-4DBF;}
-  @font-face{font-family:'Alibaba PuHuiTi 3.0';src:url(/fonts/AlibabaPuHuiTi-600-subset.woff2) format('woff2');font-weight:600;font-style:normal;font-display:swap;unicode-range:U+3000-303F,U+4E00-9FFF,U+FF00-FFEF,U+3400-4DBF;}
-  @font-face{font-family:'Alibaba PuHuiTi 3.0';src:url(/fonts/AlibabaPuHuiTi-700-subset.woff2) format('woff2');font-weight:700;font-style:normal;font-display:swap;unicode-range:U+3000-303F,U+4E00-9FFF,U+FF00-FFEF,U+3400-4DBF;}
+
+
+
+
 
     --blue:#3773FF; --black:#000000; --white:#FFFFFF;
     --turquoise:#03BFD4; --orange:#FF8B00; --purple:#9C59F3; --green:#22B473;
@@ -727,52 +582,7 @@
 <body>
 
 <!-- ============ HEADER ============ -->
-<header>
-  <div class="hbar">
-    <div class="hbar-left">
-    <svg class="logo" viewBox="0 0 544 121" xmlns="http://www.w3.org/2000/svg" aria-label="FLock">
-      <path d="M50.952 0.0469427H17.778H0.00012207V17.8477V40.987L17.778 58.7453V40.987V17.8477H50.952H68.7298L50.952 0.0469427Z" fill="white"/>
-      <path d="M50.952 61.9942H17.778H0.00012207V79.7949V102.934L17.778 120.693V102.934V79.7949H50.952H68.7298L50.952 61.9942Z" fill="white"/>
-      <path d="M193.595 110.291C169.65 110.291 154.977 90.6208 154.977 69.3363C154.977 48.0519 169.65 28.3818 193.595 28.3818C217.54 28.3818 232.213 48.0519 232.213 69.3363C232.213 90.6208 217.54 110.291 193.595 110.291ZM193.595 97.5457C206.822 97.5457 214.265 86.0325 214.265 69.3788C214.265 52.7251 206.865 41.212 193.595 41.212C180.325 41.212 173.095 52.5552 173.095 69.3788C173.095 86.2024 180.496 97.5457 193.595 97.5457Z" fill="white"/>
-      <path d="M278.569 110.291C255.389 110.291 240.589 91.0881 240.589 69.3363C240.589 47.5846 254.921 28.3818 277.931 28.3818C296.389 28.3818 310.254 38.4505 313.231 57.0585H295.879C294.007 46.9898 287.543 41.1695 278.228 41.1695C265.469 41.1695 258.664 52.98 258.664 69.3363C258.664 85.6926 265.894 97.5032 278.994 97.5032C288.138 97.5032 294.773 91.343 296.474 81.2743H313.954C310.977 99.8398 296.942 110.248 278.484 110.248L278.569 110.291Z" fill="white"/>
-      <path d="M339.743 67.6365V108.718H322.561V0.08706H339.743V62.4534" fill="white"/>
-      <path d="M375.766 36.7533L352.332 60.162L339.742 72.7372L352.332 85.3125L375.766 108.721H400.944L388.355 96.1459L364.921 72.7372L388.355 49.2861L400.944 36.7533H375.766Z" fill="white"/>
-      <path d="M409.121 108.716V91.0853H427.41V108.716H409.121Z" fill="white"/>
-      <path d="M438.864 17.5479V0.08706H457.152V17.5479H438.864ZM439.332 108.718V29.9957H456.514V108.718H439.332Z" fill="white"/>
-      <path d="M505.382 110.291C481.437 110.291 466.764 90.6208 466.764 69.3363C466.764 48.0519 481.437 28.3818 505.382 28.3818C529.327 28.3818 544 48.0519 544 69.3363C544 90.6208 529.327 110.291 505.382 110.291ZM505.382 97.5457C518.609 97.5457 526.052 86.0325 526.052 69.3788C526.052 52.7251 518.652 41.212 505.382 41.212C492.113 41.212 484.882 52.5552 484.882 69.3788C484.882 86.2024 492.283 97.5457 505.382 97.5457Z" fill="white"/>
-      <path d="M79.2562 0H96.3725L96.3725 93.2475H144.471V108.98H79.2562V0Z" fill="white"/>
-    </svg>
-    <span class="htag">FOMO · 新手手册</span>
-    <div class="hbar-dd" id="seasonDD" data-open="false">
-      <button type="button" class="hbar-btn hbar-dd-btn" id="seasonBtn"
-              aria-haspopup="menu" aria-expanded="false" aria-controls="seasonMenu">
-        Season<i class="chev" data-lucide="chevron-down"></i>
-      </button>
-      <div class="hbar-dd-menu" id="seasonMenu" role="menu" aria-labelledby="seasonBtn">
-        <a class="hbar-dd-item" href="/season-1" role="menuitem">
-          <span class="hbar-dd-tag">S1</span>
-          <span class="hbar-dd-body">
-            <span class="hbar-dd-title">Season 1 <span class="pill">LIVE</span></span>
-            <span class="hbar-dd-sub">真实使用 · Season 1 Rewards</span>
-          </span>
-        </a>
-        <a class="hbar-dd-item" href="/season-2" role="menuitem">
-          <span class="hbar-dd-tag dim">S2</span>
-          <span class="hbar-dd-body">
-            <span class="hbar-dd-title">Season 2 <span class="pill">LIVE</span></span>
-            <span class="hbar-dd-sub">Mapped model usage · from 5/25</span>
-          </span>
-        </a>
-      </div>
-    </div>
-    </div>
-    <nav class="hbar-actions" aria-label="Go to product platforms">
-      <div class="lang-dd hbar-dd" id="langDD" data-open="false"><button type="button" class="hbar-btn hbar-dd-btn lang-dd-btn" id="langBtn" aria-label="Language" aria-haspopup="menu" aria-expanded="false" aria-controls="langMenu"><span class="lang-dd-lbl">中</span><i class="chev" data-lucide="chevron-down"></i></button><div class="hbar-dd-menu lang-dd-menu" id="langMenu" role="menu" aria-labelledby="langBtn"><a class="hbar-dd-item lang-dd-item" href="/en" role="menuitem"><span class="lang-dd-name">English</span><span class="lang-dd-code">EN</span></a><a class="hbar-dd-item lang-dd-item is-active" href="/" role="menuitem" aria-current="page"><span class="lang-dd-name">中文</span><span class="lang-dd-code">中</span></a><a class="hbar-dd-item lang-dd-item" href="/ko" role="menuitem"><span class="lang-dd-name">한국어</span><span class="lang-dd-code">한</span></a><a class="hbar-dd-item lang-dd-item" href="/ja" role="menuitem"><span class="lang-dd-name">日本語</span><span class="lang-dd-code">日</span></a></div></div>
-      <a class="hbar-btn" href="https://platform.flock.io" target="_blank" rel="noopener"><span class="lbl-full">API Platform</span><span class="lbl-short">API</span><i data-lucide="arrow-up-right"></i></a>
-      <a class="hbar-btn hbar-btn-primary" href="https://fomo.flock.io" target="_blank" rel="noopener"><span class="lbl-full">FOMO 平台</span><span class="lbl-short">FOMO</span><i data-lucide="arrow-up-right"></i></a>
-    </nav>
-  </div>
-</header>
+<!-- site-header -->
 
 <!-- ============ HERO ============ -->
 <div class="hero">
@@ -1272,118 +1082,14 @@
 </section>
 
 <!-- ============ FOOTER ============ -->
-<footer>
-  <div class="wrap foot">
-    <svg class="logo" viewBox="0 0 145 121" xmlns="http://www.w3.org/2000/svg" aria-label="FLock">
-      <path d="M50.952 0.0469427H17.778H0.00012207V17.8477V40.987L17.778 58.7453V40.987V17.8477H50.952H68.7298L50.952 0.0469427Z" fill="white"/>
-      <path d="M50.952 61.9942H17.778H0.00012207V79.7949V102.934L17.778 120.693V102.934V79.7949H50.952H68.7298L50.952 61.9942Z" fill="white"/>
-      <path d="M79.2562 0H96.3725L96.3725 93.2475H144.471V108.98H79.2562V0Z" fill="white"/>
-    </svg>
-    <span>FOMO 新手手册 · 内容仅作教育用途，不构成投资建议 · Real AI. Real Impact.</span>
-  </div>
-</footer>
+<!-- site-footer -->
 
 <script>
   // Lucide icons (S-P0-3: no emoji icons)
   if(window.lucide) lucide.createIcons();
 
-  // Header — Season dropdown (click toggle + outside click + esc + soon-item guard)
-  (function(){
-    var dd  = document.getElementById('seasonDD');
-    var btn = document.getElementById('seasonBtn');
-    if(!dd || !btn) return;
-    var langDD = document.getElementById('langDD');
-    var langBtn = document.getElementById('langBtn');
-    function closeLang(){
-      if(!langDD || !langBtn) return;
-      langDD.dataset.open='false';
-      langBtn.setAttribute('aria-expanded','false');
-    }
-    function close(){ dd.dataset.open='false'; btn.setAttribute('aria-expanded','false'); }
-    function open(){ closeLang(); dd.dataset.open='true'; btn.setAttribute('aria-expanded','true'); }
-    btn.addEventListener('click', function(e){
-      e.stopPropagation();
-      (dd.dataset.open==='true') ? close() : open();
-    });
-    document.addEventListener('click', function(e){
-      if(!dd.contains(e.target)) close();
-    });
-    document.addEventListener('keydown', function(e){
-      if(e.key==='Escape') close();
-    });
-    // close after navigating to in-page anchor (e.g. #season1)
-    dd.querySelectorAll('a.hbar-dd-item[href^="#"]').forEach(function(a){
-      a.addEventListener('click', function(){ close(); });
-    });
-    // soon item: prevent navigation
-    dd.querySelectorAll('.hbar-dd-item-soon').forEach(function(a){
-      a.addEventListener('click', function(e){ e.preventDefault(); });
-    });
-  })();
 
-  // Header — Language dropdown (click toggle; closes Season menu)
-  (function(){
-    var dd  = document.getElementById('langDD');
-    var btn = document.getElementById('langBtn');
-    var menu = document.getElementById('langMenu');
-    var season = document.getElementById('seasonDD');
-    var seasonBtn = document.getElementById('seasonBtn');
-    if(!dd || !btn) return;
-    var ignoreOutside = false;
-    function closeSeason(){
-      if(!season || !seasonBtn) return;
-      season.dataset.open='false';
-      seasonBtn.setAttribute('aria-expanded','false');
-    }
-    function close(){ dd.dataset.open='false'; btn.setAttribute('aria-expanded','false'); }
-    function open(){ closeSeason(); dd.dataset.open='true'; btn.setAttribute('aria-expanded','true'); }
-    btn.addEventListener('click', function(e){
-      e.stopPropagation();
-      ignoreOutside = true;
-      (dd.dataset.open==='true') ? close() : open();
-      window.setTimeout(function(){ ignoreOutside = false; }, 0);
-    });
-    if(menu){
-      menu.addEventListener('click', function(e){
-        e.stopPropagation();
-      });
-    }
-    document.addEventListener('click', function(e){
-      if(ignoreOutside) return;
-      if(!dd.contains(e.target)) close();
-    });
-    document.addEventListener('keydown', function(e){
-      if(e.key==='Escape') close();
-    });
-    if(seasonBtn){
-      seasonBtn.addEventListener('click', function(){
-        if(season && season.dataset.open==='true') close();
-      }, true);
-    }
-    if(season){
-      season.addEventListener('click', function(e){
-        if(season.dataset.open==='true' && !dd.contains(e.target)) close();
-      });
-    }
-  })();
 
-  // Entrance reveal — IntersectionObserver, token-driven (P1-6)
-  (function(){
-    var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var items = document.querySelectorAll('[data-anim]');
-    if(rm){ items.forEach(function(el){el.classList.add('in');}); return; }
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
-    items.forEach(function(el){
-      var sibs = el.parentElement ? el.parentElement.querySelectorAll(':scope > [data-anim]') : [el];
-      var idx = Array.prototype.indexOf.call(sibs, el);
-      el.style.transitionDelay = Math.min(idx,5)*60 + 'ms';
-      io.observe(el);
-    });
-  })();
 
   // Bonding curve interactive (§05.5)
   (function(){

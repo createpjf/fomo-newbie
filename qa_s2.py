@@ -6,7 +6,7 @@ import sys
 ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(ROOT, "i18n"))
 
-from _header import patch_header_html, PAGE_SPECS, MOBILE_LANG_GRID  # noqa: E402
+from _header import patch_header_html, PAGE_SPECS  # noqa: E402
 from s2_qa import S2_LINKS, S2_EN_EXTRA, S2_KO_EXTRA, S2_JA_EXTRA  # noqa: E402
 
 LAYOUT = {
@@ -48,12 +48,6 @@ def fix_s2(lang, extra):
     if lang != "zh":
         html = apply_pairs(html, extra)
     html = patch_header_html(html, PAGE_SPECS["s2"], lang)
-    if MOBILE_LANG_GRID.strip() not in html:
-        html = html.replace(
-            ".hbar-dd{grid-column:2;grid-row:1;justify-self:end;}",
-            ".hbar-dd{grid-column:2;grid-row:1;justify-self:end;}" + MOBILE_LANG_GRID,
-            1,
-        )
     with open(path, "w", encoding="utf-8") as f:
         f.write(html)
     print("fixed", path)

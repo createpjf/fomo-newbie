@@ -92,9 +92,11 @@ Season 2 and Season 3 are maintained as locale-specific HTML sources for zh / en
 
 ### Season 3 interactive guide
 
-`season-3.js` shares the accessible tabs, native navigation disclosures and SVG charts across the four S3 sources. Each source contains its localized copy, including a small `s3-copy` JSON block for dynamic explanations. Keep source HTML and published pages in sync with the build above.
+`season-3.js` shares the accessible tabs and SVG charts across the four S3 sources. Each source contains its localized copy, including a small `s3-copy` JSON block for dynamic explanations. Keep source HTML and published pages in sync with the build above.
 
-The S3 MT-address / API-ID table uses the new S3 IDs. `data/season-3-models.json` records the public FOMO project API sources, addresses, networks and observed IDs checked on 2026-09-23; it is a provenance snapshot, not a build input. Update the four source tables together when mappings change. DSIKH uses the user-provided S3 ID `deepseek-v4.1-flash-dsikh`, while its public project API still reported `deepseek-v4-flash-dsikh` on that date; the table marks this pending platform-field update. ATTN and GOOGLCAT project links include `chain=robinhood`; the other three use `chain=base`.
+The S3 MT-address / API-ID table is generated from `data/season-3-models.json` by `i18n/_models.py`. It contains only the 11 DEX tokens from the user-provided Marketplace audit dated 2026-09-24; Deluthium is excluded. Update the JSON once and rebuild all four locales. Token identity is chain + address; project links retain the chain query parameter. Inclusion does not establish S3 reward eligibility.
+
+`i18n/_site.py`, `templates/`, `site.css` and `site.js` own the shared header, footer, metadata, typography, container edges, menus and clipboard feedback. Source HTML uses `<!-- site-header -->`, `<!-- site-footer -->` and `<!-- s3-model-rows -->` placeholders. Edit sources and shared templates, never published locale pages. The compatibility entry point `i18n/_header.py` also applies favicon and analytics. S1/S2 retain their historical rules and display a localized archive notice linking to S3.
 
 The staking example fixes usage share at 50% and the gmFLOCK multiplier at 1×, with α = 0.9 or 0.5. The gmFLOCK curve illustrates diminishing returns; it is **not** a wallet-balance calculator or the protocol's exact normalization formula. Scores are not reward amounts.
 

@@ -195,7 +195,7 @@ def main():
         )
         for old, key in LEGACY_LINKS:
             html = html.replace(old, links[key])
-        html = html.replace('href="guide.html"', links["guide"])
+        html = html.replace('href="guide.html"', 'href="' + links["guide"] + '"')
         for a, b in extra:
             html = html.replace(a, b)
         html = patch_header_html(html, PAGE_SPECS["s2"], lang)
